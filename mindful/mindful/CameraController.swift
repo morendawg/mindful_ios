@@ -20,6 +20,7 @@ class CameraController : NSObject, AVCaptureVideoDataOutputSampleBufferDelegate,
     var frontCameraInput: AVCaptureDeviceInput?
     var rearCameraInput: AVCaptureDeviceInput?
     var videoOutput: AVCaptureVideoDataOutput?
+    var audioOutput: AVCaptureAudioDataOutput?
     var previewLayer: AVCaptureVideoPreviewLayer?
     var landmarksLayer: CAShapeLayer?
     var recordingDelegate:AVCaptureFileOutputRecordingDelegate?
@@ -94,12 +95,12 @@ extension CameraController {
             guard let captureSession = self.captureSession else { throw CameraControllerError.captureSessionIsMissing }
             
             self.videoOutput = AVCaptureVideoDataOutput()
+            self.audioOutput = AVCaptureAudioDataOutput()
             let settings: [AnyHashable: Any] = [kCVPixelBufferPixelFormatTypeKey as AnyHashable: Int(kCVPixelFormatType_32BGRA)]
             self.videoOutput?.videoSettings = settings as! [String : Any]
             self.videoOutput?.setSampleBufferDelegate(self, queue: facesQueue)
             if captureSession.canAddOutput(self.videoOutput!) { captureSession.addOutput(self.videoOutput!) }
-//            self.captureSession?.addOutput(videoFileOutput)
-            
+//            captureSession.addOutput(self.audioOutput!)
             captureSession.startRunning()
         }
         
@@ -180,22 +181,46 @@ extension CameraController {
         }
         captureSession.commitConfiguration()
     }
+    func randomVideoFileName(length: Int) -> String {
+        
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let len = UInt32(letters.length)
+        
+        var randomString = ""
+        
+        for _ in 0 ..< length {
+            let rand = arc4random_uniform(len)
+            var nextChar = letters.character(at: Int(rand))
+            randomString += NSString(characters: &nextChar, length: 1) as String
+        }
+        randomString += ".mov"
+        
+        return randomString
+    }
+    
     
     func beginRecording () throws {
-        let exportPath = NSTemporaryDirectory().appendingFormat("/video.mov")
+        self.captureSession?.removeOutput(self.videoOutput!)
+        self.captureSession?.addOutput(self.videoFileOutput)
+        let exportPath = NSTemporaryDirectory().appendingFormat(randomVideoFileName(length: 8))
         self.exportURL = URL(fileURLWithPath: exportPath)
         self.videoFileOutput.startRecording(to: self.exportURL!, recordingDelegate: self.recordingDelegate!)
     }
     
     func stopRecording() throws {
         self.videoFileOutput.stopRecording()
+        
         PHPhotoLibrary.shared().performChanges({
             PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: self.exportURL!)
         }) { saved, error in
             if saved {
                print("Saved the video")
+            } else if (error != nil) {
+                print(error!.localizedDescription)
             }
         }
+        self.captureSession?.removeOutput(self.videoFileOutput)
+        self.captureSession?.addOutput(self.videoOutput!)
     }
     
     func fileOutput(_ output: AVCaptureFileOutput, didStartRecordingTo fileURL: URL, from connections: [AVCaptureConnection]) {

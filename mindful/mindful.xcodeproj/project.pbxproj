@@ -13,9 +13,13 @@
 		B4861F461F7EB1B50071E25F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4861F451F7EB1B50071E25F /* Assets.xcassets */; };
 		B4861F511F7EB1C60071E25F /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4861F501F7EB1C60071E25F /* CameraController.swift */; };
 		B4861F641F7ECF340071E25F /* CGRect+Scaled.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4861F631F7ECF340071E25F /* CGRect+Scaled.swift */; };
+		E3C6F22CA9097150C4192AF0 /* Pods_mindful.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB1B09D01B7AB9391C9E8CD /* Pods_mindful.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C4DC71C6F56625A7F299BBC /* Pods-mindful.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mindful.release.xcconfig"; path = "Pods/Target Support Files/Pods-mindful/Pods-mindful.release.xcconfig"; sourceTree = "<group>"; };
+		1FB1B09D01B7AB9391C9E8CD /* Pods_mindful.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mindful.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		306AEA806C831E01F94510A2 /* Pods-mindful.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mindful.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mindful/Pods-mindful.debug.xcconfig"; sourceTree = "<group>"; };
 		B4861F3B1F7EB1B50071E25F /* mindful.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mindful.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4861F3E1F7EB1B50071E25F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4861F401F7EB1B50071E25F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -25,6 +29,7 @@
 		B4861F501F7EB1C60071E25F /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		B4861F521F7EBEB10071E25F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B4861F631F7ECF340071E25F /* CGRect+Scaled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Scaled.swift"; sourceTree = "<group>"; };
+		B4861F851F8435AC0071E25F /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,17 +37,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3C6F22CA9097150C4192AF0 /* Pods_mindful.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A26232D9D45FDFCBD9315DC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1FB1B09D01B7AB9391C9E8CD /* Pods_mindful.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9774720B26424EF7CC5FB13B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				306AEA806C831E01F94510A2 /* Pods-mindful.debug.xcconfig */,
+				0C4DC71C6F56625A7F299BBC /* Pods-mindful.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		B4861F321F7EB1B50071E25F = {
 			isa = PBXGroup;
 			children = (
 				B4861F3D1F7EB1B50071E25F /* mindful */,
 				B4861F3C1F7EB1B50071E25F /* Products */,
+				9774720B26424EF7CC5FB13B /* Pods */,
+				0A26232D9D45FDFCBD9315DC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -65,6 +90,7 @@
 				B4861F451F7EB1B50071E25F /* Assets.xcassets */,
 				B4861F521F7EBEB10071E25F /* LaunchScreen.storyboard */,
 				B4861F4A1F7EB1B50071E25F /* Info.plist */,
+				B4861F851F8435AC0071E25F /* GoogleService-Info.plist */,
 			);
 			path = mindful;
 			sourceTree = "<group>";
@@ -76,9 +102,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B4861F4D1F7EB1B50071E25F /* Build configuration list for PBXNativeTarget "mindful" */;
 			buildPhases = (
+				FF43B8DAF922237D78A0F397 /* [CP] Check Pods Manifest.lock */,
 				B4861F371F7EB1B50071E25F /* Sources */,
 				B4861F381F7EB1B50071E25F /* Frameworks */,
 				B4861F391F7EB1B50071E25F /* Resources */,
+				1FC6E298468E7117E607CF0C /* [CP] Embed Pods Frameworks */,
+				2545CFDC29A9DA81EED13C65 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -134,6 +163,60 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1FC6E298468E7117E607CF0C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-mindful/Pods-mindful-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mindful/Pods-mindful-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2545CFDC29A9DA81EED13C65 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mindful/Pods-mindful-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF43B8DAF922237D78A0F397 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-mindful-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B4861F371F7EB1B50071E25F /* Sources */ = {
@@ -270,6 +353,7 @@
 		};
 		B4861F4E1F7EB1B50071E25F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 306AEA806C831E01F94510A2 /* Pods-mindful.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -285,6 +369,7 @@
 		};
 		B4861F4F1F7EB1B50071E25F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C4DC71C6F56625A7F299BBC /* Pods-mindful.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
