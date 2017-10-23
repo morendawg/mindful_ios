@@ -7,5 +7,6 @@ target 'mindful' do
 
   # Pods for mindful
   pod 'Firebase/Core'
+  pod 'Firebase/Storage'
 
 end

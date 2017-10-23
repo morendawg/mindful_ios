@@ -13,6 +13,7 @@
 		B4861F461F7EB1B50071E25F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4861F451F7EB1B50071E25F /* Assets.xcassets */; };
 		B4861F511F7EB1C60071E25F /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4861F501F7EB1C60071E25F /* CameraController.swift */; };
 		B4861F641F7ECF340071E25F /* CGRect+Scaled.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4861F631F7ECF340071E25F /* CGRect+Scaled.swift */; };
+		B4A840721F843B4900830433 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4A840711F843B4900830433 /* GoogleService-Info.plist */; };
 		E3C6F22CA9097150C4192AF0 /* Pods_mindful.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB1B09D01B7AB9391C9E8CD /* Pods_mindful.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,7 +30,7 @@
 		B4861F501F7EB1C60071E25F /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		B4861F521F7EBEB10071E25F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B4861F631F7ECF340071E25F /* CGRect+Scaled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Scaled.swift"; sourceTree = "<group>"; };
-		B4861F851F8435AC0071E25F /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B4A840711F843B4900830433 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,8 +90,8 @@
 				B4861F421F7EB1B50071E25F /* Main.storyboard */,
 				B4861F451F7EB1B50071E25F /* Assets.xcassets */,
 				B4861F521F7EBEB10071E25F /* LaunchScreen.storyboard */,
+				B4A840711F843B4900830433 /* GoogleService-Info.plist */,
 				B4861F4A1F7EB1B50071E25F /* Info.plist */,
-				B4861F851F8435AC0071E25F /* GoogleService-Info.plist */,
 			);
 			path = mindful;
 			sourceTree = "<group>";
@@ -158,6 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4861F461F7EB1B50071E25F /* Assets.xcassets in Resources */,
+				B4A840721F843B4900830433 /* GoogleService-Info.plist in Resources */,
 				B4861F441F7EB1B50071E25F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -172,11 +174,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-mindful/Pods-mindful-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
