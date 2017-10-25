@@ -14,6 +14,8 @@
 		B4861F511F7EB1C60071E25F /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4861F501F7EB1C60071E25F /* CameraController.swift */; };
 		B4861F641F7ECF340071E25F /* CGRect+Scaled.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4861F631F7ECF340071E25F /* CGRect+Scaled.swift */; };
 		B4A840721F843B4900830433 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4A840711F843B4900830433 /* GoogleService-Info.plist */; };
+		C0361CE51F9FEC0F00472570 /* TextClassificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0361CE41F9FEC0F00472570 /* TextClassificationService.swift */; };
+		C0361CEB1F9FFFFE00472570 /* TextSentiment.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C0361CEA1F9FFFFD00472570 /* TextSentiment.mlmodel */; };
 		E3C6F22CA9097150C4192AF0 /* Pods_mindful.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB1B09D01B7AB9391C9E8CD /* Pods_mindful.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +33,8 @@
 		B4861F521F7EBEB10071E25F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B4861F631F7ECF340071E25F /* CGRect+Scaled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Scaled.swift"; sourceTree = "<group>"; };
 		B4A840711F843B4900830433 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C0361CE41F9FEC0F00472570 /* TextClassificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextClassificationService.swift; sourceTree = "<group>"; };
+		C0361CEA1F9FFFFD00472570 /* TextSentiment.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = TextSentiment.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,7 @@
 		B4861F3D1F7EB1B50071E25F /* mindful */ = {
 			isa = PBXGroup;
 			children = (
+				C0361CE61F9FEF6F00472570 /* MLmodels */,
 				B4861F501F7EB1C60071E25F /* CameraController.swift */,
 				B4861F3E1F7EB1B50071E25F /* AppDelegate.swift */,
 				B4861F631F7ECF340071E25F /* CGRect+Scaled.swift */,
@@ -92,8 +97,17 @@
 				B4861F521F7EBEB10071E25F /* LaunchScreen.storyboard */,
 				B4A840711F843B4900830433 /* GoogleService-Info.plist */,
 				B4861F4A1F7EB1B50071E25F /* Info.plist */,
+				C0361CE41F9FEC0F00472570 /* TextClassificationService.swift */,
 			);
 			path = mindful;
+			sourceTree = "<group>";
+		};
+		C0361CE61F9FEF6F00472570 /* MLmodels */ = {
+			isa = PBXGroup;
+			children = (
+				C0361CEA1F9FFFFD00472570 /* TextSentiment.mlmodel */,
+			);
+			path = MLmodels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +243,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0361CEB1F9FFFFE00472570 /* TextSentiment.mlmodel in Sources */,
+				C0361CE51F9FEC0F00472570 /* TextClassificationService.swift in Sources */,
 				B4861F511F7EB1C60071E25F /* CameraController.swift in Sources */,
 				B4861F641F7ECF340071E25F /* CGRect+Scaled.swift in Sources */,
 				B4861F411F7EB1B50071E25F /* ViewController.swift in Sources */,
@@ -363,10 +379,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 72VRX99PNU;
+				DEVELOPMENT_TEAM = UCPSGU9EL6;
 				INFOPLIST_FILE = mindful/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.seniordesign.mindful;
+				PRODUCT_BUNDLE_IDENTIFIER = com.seniordesignc.mindful;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -379,10 +395,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 72VRX99PNU;
+				DEVELOPMENT_TEAM = UCPSGU9EL6;
 				INFOPLIST_FILE = mindful/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.seniordesign.mindful;
+				PRODUCT_BUNDLE_IDENTIFIER = com.seniordesignc.mindful;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
