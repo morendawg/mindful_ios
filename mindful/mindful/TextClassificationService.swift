@@ -14,7 +14,7 @@ final class TextClassificationService {
         case featuresMissing
     }
     
-    private let model = SentimentPolarity()
+    private let model = TextSentiment()
     private let options: NSLinguisticTagger.Options = [.omitWhitespace, .omitPunctuation, .omitOther]
     private lazy var tagger: NSLinguisticTagger = .init(
         tagSchemes: NSLinguisticTagger.availableTagSchemes(forLanguage: "en"),
@@ -22,7 +22,7 @@ final class TextClassificationService {
     )
     
     // MARK: - Prediction
-    func predictSentiment(from text: String) -> Sentiment {
+    func predictSentiment(from text: String) -> String {
         do {
             let inputFeatures = features(from: text)
             // Make prediction only with 2 or more words
@@ -34,14 +34,14 @@ final class TextClassificationService {
             
             switch output.classLabel {
             case "Pos":
-                return .positive
+                return "positive"
             case "Neg":
-                return .negative
+                return "negative"
             default:
-                return .neutral
+                return "neutral"
             }
         } catch {
-            return .neutral
+            return "neutral"
         }
     }
 }
