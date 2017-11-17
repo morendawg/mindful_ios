@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mindful/ViewController.swift"
-            timestampString = "532576139.888068"
+            timestampString = "532581156.631854"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "16"
@@ -22,31 +22,31 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "mindful.ViewController.(capturePreviewView in _A956BEB5B7FC22C619D3572E82999444).getter : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UIView&gt;"
+                  symbolName = "mindful.ViewController.nlpText.getter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UILabel&gt;"
                   moduleName = "mindful"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/anvitaa/Desktop/mindful_ios/mindful/mindful/ViewController.swift"
-                  timestampString = "532576143.091949"
+                  timestampString = "532581159.875076"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "17"
                   endingLineNumber = "17"
-                  offsetFromSymbolStart = "104">
+                  offsetFromSymbolStart = "92">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "mindful.ViewController.(capturePreviewView in _A956BEB5B7FC22C619D3572E82999444).setter : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UIView&gt;"
+                  symbolName = "mindful.ViewController.nlpText.setter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UILabel&gt;"
                   moduleName = "mindful"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/anvitaa/Desktop/mindful_ios/mindful/mindful/ViewController.swift"
-                  timestampString = "532576143.095892"
+                  timestampString = "532581159.878027"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "17"
                   endingLineNumber = "17"
-                  offsetFromSymbolStart = "120">
+                  offsetFromSymbolStart = "96">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -56,12 +56,12 @@
                   moduleName = "mindful"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/anvitaa/Desktop/mindful_ios/mindful/mindful/ViewController.swift"
-                  timestampString = "532576143.09938"
+                  timestampString = "532581159.880631"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "17"
                   endingLineNumber = "17"
-                  offsetFromSymbolStart = "276">
+                  offsetFromSymbolStart = "284">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -71,12 +71,12 @@
                   moduleName = "mindful"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/anvitaa/Desktop/mindful_ios/mindful/mindful/ViewController.swift"
-                  timestampString = "532576143.101986"
+                  timestampString = "532581159.883116"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "17"
                   endingLineNumber = "17"
-                  offsetFromSymbolStart = "232">
+                  offsetFromSymbolStart = "240">
                </Location>
             </Locations>
          </BreakpointContent>
