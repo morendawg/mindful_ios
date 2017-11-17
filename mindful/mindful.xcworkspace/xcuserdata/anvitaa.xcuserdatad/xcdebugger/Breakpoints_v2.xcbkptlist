@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "mindful/ViewController.swift"
+            timestampString = "532576139.888068"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "ViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "mindful.ViewController.(capturePreviewView in _A956BEB5B7FC22C619D3572E82999444).getter : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UIView&gt;"
+                  moduleName = "mindful"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anvitaa/Desktop/mindful_ios/mindful/mindful/ViewController.swift"
+                  timestampString = "532576143.091949"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "104">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "mindful.ViewController.(capturePreviewView in _A956BEB5B7FC22C619D3572E82999444).setter : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UIView&gt;"
+                  moduleName = "mindful"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anvitaa/Desktop/mindful_ios/mindful/mindful/ViewController.swift"
+                  timestampString = "532576143.095892"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "120">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "mindful.ViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; mindful.ViewController"
+                  moduleName = "mindful"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anvitaa/Desktop/mindful_ios/mindful/mindful/ViewController.swift"
+                  timestampString = "532576143.09938"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "276">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "mindful.ViewController.init(coder: __ObjC.NSCoder) -&gt; Swift.Optional&lt;mindful.ViewController&gt;"
+                  moduleName = "mindful"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anvitaa/Desktop/mindful_ios/mindful/mindful/ViewController.swift"
+                  timestampString = "532576143.101986"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "232">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
