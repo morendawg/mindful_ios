@@ -32,7 +32,6 @@ class CameraController : NSObject, AVCaptureVideoDataOutputSampleBufferDelegate,
     let faceLandmarks = VNDetectFaceLandmarksRequest()
     let faceLandmarksDetectionRequest = VNSequenceRequestHandler()
     let faceDetectionRequest = VNSequenceRequestHandler()
-    let faceActionUnitTracker = FaceActionUnitTracker()
 }
 extension CameraController {
     enum CameraControllerError: Swift.Error {
@@ -264,6 +263,7 @@ extension CameraController {
             if !results.isEmpty {
                 faceLandmarks.inputFaceObservations = results
                 detectLandmarks(on: image)
+                
                 DispatchQueue.main.async {
                     self.landmarksLayer?.sublayers?.removeAll()
                 }
@@ -307,7 +307,6 @@ extension CameraController {
                         let outerLips = observation.landmarks?.outerLips
                         self.convertPointsForFace(outerLips, faceBoundingBox)
                         
-                        print(self.faceActionUnitTracker.calculateMostLikelyExpression(landmarks: observation.landmarks!))
                         
                     }
                 }
@@ -329,16 +328,21 @@ extension CameraController {
     }
     
     func draw(points: [(x: CGFloat, y: CGFloat)]) {
-        for i in 0..<points.count {
-            let point = CGPoint(x: points[i].x, y: points[i].y)
-            let newLayer = CAShapeLayer()
-            newLayer.fillColor = UIColor.white.cgColor
-            let path = UIBezierPath(arcCenter: point, radius: CGFloat(i), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-            newLayer.path = path.cgPath
-            self.landmarksLayer?.addSublayer(newLayer)
-
-        }
+        let newLayer = CAShapeLayer()
+        newLayer.strokeColor = UIColor.green.cgColor
+        newLayer.lineWidth = 2.0
         
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: points[0].x, y: points[0].y))
+        for i in 0..<points.count - 1 {
+            let point = CGPoint(x: points[i].x, y: points[i].y)
+            path.addLine(to: point)
+            path.move(to: point)
+        }
+        path.addLine(to: CGPoint(x: points[0].x, y: points[0].y))
+        newLayer.path = path.cgPath
+        
+        self.landmarksLayer?.addSublayer(newLayer)
     }
     
     
