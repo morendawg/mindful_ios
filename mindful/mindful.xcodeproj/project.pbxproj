@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		B4861F3F1F7EB1B50071E25F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4861F3E1F7EB1B50071E25F /* AppDelegate.swift */; };
 		B4861F411F7EB1B50071E25F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4861F401F7EB1B50071E25F /* ViewController.swift */; };
-		B4861F441F7EB1B50071E25F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4861F421F7EB1B50071E25F /* Main.storyboard */; };
 		B4861F461F7EB1B50071E25F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4861F451F7EB1B50071E25F /* Assets.xcassets */; };
 		B4861F511F7EB1C60071E25F /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4861F501F7EB1C60071E25F /* CameraController.swift */; };
 		B4861F641F7ECF340071E25F /* CGRect+Scaled.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4861F631F7ECF340071E25F /* CGRect+Scaled.swift */; };
@@ -28,7 +27,6 @@
 		B4861F3B1F7EB1B50071E25F /* mindful.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mindful.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4861F3E1F7EB1B50071E25F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4861F401F7EB1B50071E25F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B4861F431F7EB1B50071E25F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B4861F451F7EB1B50071E25F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B4861F4A1F7EB1B50071E25F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4861F501F7EB1C60071E25F /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
@@ -97,7 +95,6 @@
 				B4861F3E1F7EB1B50071E25F /* AppDelegate.swift */,
 				B4861F631F7ECF340071E25F /* CGRect+Scaled.swift */,
 				B4861F401F7EB1B50071E25F /* ViewController.swift */,
-				B4861F421F7EB1B50071E25F /* Main.storyboard */,
 				B4861F451F7EB1B50071E25F /* Assets.xcassets */,
 				B4861F521F7EBEB10071E25F /* LaunchScreen.storyboard */,
 				B4A840711F843B4900830433 /* GoogleService-Info.plist */,
@@ -180,7 +177,6 @@
 			files = (
 				B4861F461F7EB1B50071E25F /* Assets.xcassets in Resources */,
 				B4A840721F843B4900830433 /* GoogleService-Info.plist in Resources */,
-				B4861F441F7EB1B50071E25F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,17 +257,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		B4861F421F7EB1B50071E25F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B4861F431F7EB1B50071E25F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B4861F4B1F7EB1B50071E25F /* Debug */ = {
