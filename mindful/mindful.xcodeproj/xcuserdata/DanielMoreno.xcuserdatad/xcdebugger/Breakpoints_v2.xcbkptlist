@@ -10,6 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mindful/CameraController.swift"
+<<<<<<< HEAD
             timestampString = "530225849.572509"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -17,6 +18,15 @@
             endingLineNumber = "127"
             landmarkName = "displayPreview(on:)"
             landmarkType = "7">
+=======
+            timestampString = "530671172.425034"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "unknown"
+            landmarkType = "0">
+>>>>>>> trying to push
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -26,6 +36,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mindful/CameraController.swift"
+<<<<<<< HEAD
             timestampString = "530225849.573599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -33,6 +44,15 @@
             endingLineNumber = "184"
             landmarkName = "beginRecording()"
             landmarkType = "7">
+=======
+            timestampString = "530671172.425566"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
+            landmarkName = "unknown"
+            landmarkType = "0">
+>>>>>>> trying to push
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -42,6 +62,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mindful/CameraController.swift"
+<<<<<<< HEAD
             timestampString = "530225849.574489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -49,22 +70,15 @@
             endingLineNumber = "182"
             landmarkName = "beginRecording()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "mindful/CameraController.swift"
-            timestampString = "530225849.575368"
+=======
+            timestampString = "530671172.425955"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "270"
-            endingLineNumber = "270"
-            landmarkName = "detectFace(on:)"
-            landmarkType = "7">
+            startingLineNumber = "190"
+            endingLineNumber = "190"
+            landmarkName = "unknown"
+            landmarkType = "0">
+>>>>>>> trying to push
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -74,6 +88,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mindful/CameraController.swift"
+<<<<<<< HEAD
+            timestampString = "530225849.575368"
+=======
+            timestampString = "530671172.426337"
+>>>>>>> trying to push
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "mindful/CameraController.swift"
+<<<<<<< HEAD
             timestampString = "530225849.576203"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -81,6 +116,15 @@
             endingLineNumber = "256"
             landmarkName = "captureOutput(_:didOutput:from:)"
             landmarkType = "7">
+=======
+            timestampString = "530671172.426707"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
+            landmarkName = "unknown"
+            landmarkType = "0">
+>>>>>>> trying to push
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -90,6 +134,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mindful/CameraController.swift"
+<<<<<<< HEAD
             timestampString = "530225849.577016"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -97,6 +142,15 @@
             endingLineNumber = "248"
             landmarkName = "convert(ciImage:)"
             landmarkType = "7">
+=======
+            timestampString = "530671172.427058"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "256"
+            endingLineNumber = "256"
+            landmarkName = "unknown"
+            landmarkType = "0">
+>>>>>>> trying to push
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -106,6 +160,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mindful/CameraController.swift"
+<<<<<<< HEAD
             timestampString = "530225849.577755"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -113,6 +168,15 @@
             endingLineNumber = "181"
             landmarkName = "beginRecording()"
             landmarkType = "7">
+=======
+            timestampString = "530671172.427406"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
+            landmarkName = "unknown"
+            landmarkType = "0">
+>>>>>>> trying to push
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -7,23 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B47463E11FA15D4A00E75721 /* CNNEmotions.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B47463DE1FA15D2C00E75721 /* CNNEmotions.mlmodel */; };
 		B4861F3F1F7EB1B50071E25F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4861F3E1F7EB1B50071E25F /* AppDelegate.swift */; };
 		B4861F411F7EB1B50071E25F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4861F401F7EB1B50071E25F /* ViewController.swift */; };
 		B4861F441F7EB1B50071E25F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4861F421F7EB1B50071E25F /* Main.storyboard */; };
 		B4861F461F7EB1B50071E25F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4861F451F7EB1B50071E25F /* Assets.xcassets */; };
 		B4861F511F7EB1C60071E25F /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4861F501F7EB1C60071E25F /* CameraController.swift */; };
 		B4861F641F7ECF340071E25F /* CGRect+Scaled.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4861F631F7ECF340071E25F /* CGRect+Scaled.swift */; };
+<<<<<<< HEAD
 		B4A840721F843B4900830433 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4A840711F843B4900830433 /* GoogleService-Info.plist */; };
 		C0361CE51F9FEC0F00472570 /* TextClassificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0361CE41F9FEC0F00472570 /* TextClassificationService.swift */; };
 		C0361CEB1F9FFFFE00472570 /* TextSentiment.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C0361CEA1F9FFFFD00472570 /* TextSentiment.mlmodel */; };
 		C08667611FBE874B00993282 /* FAUTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08667601FBE874B00993282 /* FAUTracker.swift */; };
 		E3C6F22CA9097150C4192AF0 /* Pods_mindful.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB1B09D01B7AB9391C9E8CD /* Pods_mindful.framework */; };
+=======
+		B488E7B11F9FDBFD00E6D279 /* ClassificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B488E7B01F9FDBFD00E6D279 /* ClassificationService.swift */; };
+		B4A840721F843B4900830433 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4A840711F843B4900830433 /* GoogleService-Info.plist */; };
+		F3861B77D4E57831F3C709FB /* Pods_mindful.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4DE50C31034CDD980EC36AC /* Pods_mindful.framework */; };
+>>>>>>> trying to push
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0C4DC71C6F56625A7F299BBC /* Pods-mindful.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mindful.release.xcconfig"; path = "Pods/Target Support Files/Pods-mindful/Pods-mindful.release.xcconfig"; sourceTree = "<group>"; };
-		1FB1B09D01B7AB9391C9E8CD /* Pods_mindful.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mindful.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		306AEA806C831E01F94510A2 /* Pods-mindful.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mindful.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mindful/Pods-mindful.debug.xcconfig"; sourceTree = "<group>"; };
+		5907F944888ED4B16BFD6A1E /* Pods-mindful.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mindful.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mindful/Pods-mindful.debug.xcconfig"; sourceTree = "<group>"; };
+		63676298501E7FACBE5A03A4 /* Pods-mindful.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mindful.release.xcconfig"; path = "Pods/Target Support Files/Pods-mindful/Pods-mindful.release.xcconfig"; sourceTree = "<group>"; };
+		B47463DE1FA15D2C00E75721 /* CNNEmotions.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CNNEmotions.mlmodel; sourceTree = "<group>"; };
 		B4861F3B1F7EB1B50071E25F /* mindful.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mindful.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4861F3E1F7EB1B50071E25F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4861F401F7EB1B50071E25F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -33,10 +40,16 @@
 		B4861F501F7EB1C60071E25F /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		B4861F521F7EBEB10071E25F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B4861F631F7ECF340071E25F /* CGRect+Scaled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Scaled.swift"; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		B4A840711F843B4900830433 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C0361CE41F9FEC0F00472570 /* TextClassificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextClassificationService.swift; sourceTree = "<group>"; };
 		C0361CEA1F9FFFFD00472570 /* TextSentiment.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = TextSentiment.mlmodel; sourceTree = "<group>"; };
 		C08667601FBE874B00993282 /* FAUTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAUTracker.swift; sourceTree = "<group>"; };
+=======
+		B488E7B01F9FDBFD00E6D279 /* ClassificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationService.swift; sourceTree = "<group>"; };
+		B4A840711F843B4900830433 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D4DE50C31034CDD980EC36AC /* Pods_mindful.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mindful.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+>>>>>>> trying to push
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,28 +57,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3C6F22CA9097150C4192AF0 /* Pods_mindful.framework in Frameworks */,
+				F3861B77D4E57831F3C709FB /* Pods_mindful.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0A26232D9D45FDFCBD9315DC /* Frameworks */ = {
+		2DAB4A4A3D6949E032CC4A5B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1FB1B09D01B7AB9391C9E8CD /* Pods_mindful.framework */,
+				D4DE50C31034CDD980EC36AC /* Pods_mindful.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		9774720B26424EF7CC5FB13B /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				306AEA806C831E01F94510A2 /* Pods-mindful.debug.xcconfig */,
-				0C4DC71C6F56625A7F299BBC /* Pods-mindful.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		B4861F321F7EB1B50071E25F = {
@@ -73,8 +77,8 @@
 			children = (
 				B4861F3D1F7EB1B50071E25F /* mindful */,
 				B4861F3C1F7EB1B50071E25F /* Products */,
-				9774720B26424EF7CC5FB13B /* Pods */,
-				0A26232D9D45FDFCBD9315DC /* Frameworks */,
+				DF49A3ECA2A75EE35CB34207 /* Pods */,
+				2DAB4A4A3D6949E032CC4A5B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,7 +93,11 @@
 		B4861F3D1F7EB1B50071E25F /* mindful */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				C0361CE61F9FEF6F00472570 /* MLmodels */,
+=======
+				B47463DE1FA15D2C00E75721 /* CNNEmotions.mlmodel */,
+>>>>>>> trying to push
 				B4861F501F7EB1C60071E25F /* CameraController.swift */,
 				C08667601FBE874B00993282 /* FAUTracker.swift */,
 				B4861F3E1F7EB1B50071E25F /* AppDelegate.swift */,
@@ -100,17 +108,31 @@
 				B4861F521F7EBEB10071E25F /* LaunchScreen.storyboard */,
 				B4A840711F843B4900830433 /* GoogleService-Info.plist */,
 				B4861F4A1F7EB1B50071E25F /* Info.plist */,
+<<<<<<< HEAD
 				C0361CE41F9FEC0F00472570 /* TextClassificationService.swift */,
+=======
+				B488E7B01F9FDBFD00E6D279 /* ClassificationService.swift */,
+>>>>>>> trying to push
 			);
 			path = mindful;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 		C0361CE61F9FEF6F00472570 /* MLmodels */ = {
 			isa = PBXGroup;
 			children = (
 				C0361CEA1F9FFFFD00472570 /* TextSentiment.mlmodel */,
 			);
 			path = MLmodels;
+=======
+		DF49A3ECA2A75EE35CB34207 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5907F944888ED4B16BFD6A1E /* Pods-mindful.debug.xcconfig */,
+				63676298501E7FACBE5A03A4 /* Pods-mindful.release.xcconfig */,
+			);
+			name = Pods;
+>>>>>>> trying to push
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,12 +142,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B4861F4D1F7EB1B50071E25F /* Build configuration list for PBXNativeTarget "mindful" */;
 			buildPhases = (
-				FF43B8DAF922237D78A0F397 /* [CP] Check Pods Manifest.lock */,
+				5227A859403F04BC079F5119 /* [CP] Check Pods Manifest.lock */,
 				B4861F371F7EB1B50071E25F /* Sources */,
 				B4861F381F7EB1B50071E25F /* Frameworks */,
 				B4861F391F7EB1B50071E25F /* Resources */,
-				1FC6E298468E7117E607CF0C /* [CP] Embed Pods Frameworks */,
-				2545CFDC29A9DA81EED13C65 /* [CP] Copy Pods Resources */,
+				FC959B548D9B27B5E48247B1 /* [CP] Embed Pods Frameworks */,
+				D31803E7BF60F90DFCFFB28A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -184,44 +206,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1FC6E298468E7117E607CF0C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-mindful/Pods-mindful-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mindful/Pods-mindful-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2545CFDC29A9DA81EED13C65 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mindful/Pods-mindful-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FF43B8DAF922237D78A0F397 /* [CP] Check Pods Manifest.lock */ = {
+		5227A859403F04BC079F5119 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -239,6 +224,45 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D31803E7BF60F90DFCFFB28A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mindful/Pods-mindful-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FC959B548D9B27B5E48247B1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-mindful/Pods-mindful-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/VisionLab/VisionLab.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VisionLab.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mindful/Pods-mindful-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -246,11 +270,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				C0361CEB1F9FFFFE00472570 /* TextSentiment.mlmodel in Sources */,
 				C08667611FBE874B00993282 /* FAUTracker.swift in Sources */,
 				C0361CE51F9FEC0F00472570 /* TextClassificationService.swift in Sources */,
 				B4861F511F7EB1C60071E25F /* CameraController.swift in Sources */,
 				B4861F641F7ECF340071E25F /* CGRect+Scaled.swift in Sources */,
+=======
+				B47463E11FA15D4A00E75721 /* CNNEmotions.mlmodel in Sources */,
+				B4861F511F7EB1C60071E25F /* CameraController.swift in Sources */,
+				B4861F641F7ECF340071E25F /* CGRect+Scaled.swift in Sources */,
+				B488E7B11F9FDBFD00E6D279 /* ClassificationService.swift in Sources */,
+>>>>>>> trying to push
 				B4861F411F7EB1B50071E25F /* ViewController.swift in Sources */,
 				B4861F3F1F7EB1B50071E25F /* AppDelegate.swift in Sources */,
 			);
@@ -379,15 +410,17 @@
 		};
 		B4861F4E1F7EB1B50071E25F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 306AEA806C831E01F94510A2 /* Pods-mindful.debug.xcconfig */;
+			baseConfigurationReference = 5907F944888ED4B16BFD6A1E /* Pods-mindful.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UCPSGU9EL6;
 				INFOPLIST_FILE = mindful/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.seniordesignc.mindful;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -395,15 +428,17 @@
 		};
 		B4861F4F1F7EB1B50071E25F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C4DC71C6F56625A7F299BBC /* Pods-mindful.release.xcconfig */;
+			baseConfigurationReference = 63676298501E7FACBE5A03A4 /* Pods-mindful.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UCPSGU9EL6;
 				INFOPLIST_FILE = mindful/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.seniordesignc.mindful;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

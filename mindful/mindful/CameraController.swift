@@ -12,7 +12,7 @@ import Vision
 import Photos
 import FirebaseStorage
 
-class CameraController : NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureFileOutputRecordingDelegate {
+class CameraController : NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureFileOutputRecordingDelegate, ClassificationServiceDelegate {
     var captureSession : AVCaptureSession?
     var frontCamera : AVCaptureDevice?
     var rearCamera: AVCaptureDevice?
@@ -32,9 +32,13 @@ class CameraController : NSObject, AVCaptureVideoDataOutputSampleBufferDelegate,
     let faceLandmarks = VNDetectFaceLandmarksRequest()
     let faceLandmarksDetectionRequest = VNSequenceRequestHandler()
     let faceDetectionRequest = VNSequenceRequestHandler()
-    let faceActionUnitTracker = FaceActionUnitTracker()
-
+    var classificationService = ClassificationService()
+    weak var customDelegate: FacialExpressionTrackerDelegate?
 }
+protocol FacialExpressionTrackerDelegate: class { //Setting up a Custom delegate for this class. I am using `class` here to make it weak.
+    func changeFacialExpressionLabel(emotion: String?) //This function will send the data back to origin viewcontroller.
+}
+
 extension CameraController {
     enum CameraControllerError: Swift.Error {
         case captureSessionAlreadyRunning
@@ -115,6 +119,8 @@ extension CameraController {
                 try configureCaptureDevices()
                 try configureDeviceInputs()
                 try configurePhotoOutput()
+                self.classificationService.setup()
+                self.classificationService.delegate = self
             } catch {
                 DispatchQueue.main.async {
                     completionHandler(error)
@@ -257,6 +263,7 @@ extension CameraController {
         let ciImage = CIImage(cvImageBuffer: pixelBuffer!, options: attachments as! [String : Any]?)
         let ciImageWithOrientation = ciImage.oriented(forExifOrientation: Int32(UIImageOrientation.leftMirrored.rawValue))
         self.detectFace(on: ciImageWithOrientation)
+        self.classificationService.classify(image: ciImageWithOrientation)
     }
     
     func detectFace(on image: CIImage) {
@@ -309,9 +316,6 @@ extension CameraController {
                         let outerLips = observation.landmarks?.outerLips
                         self.convertPointsForFace(outerLips, faceBoundingBox)
                         
-                    print(self.faceActionUnitTracker.calculateMostLikelyExpression(landmarks: observation.landmarks!))
-                        
-                        
                     }
                 }
             }
@@ -336,7 +340,7 @@ extension CameraController {
             let point = CGPoint(x: points[i].x, y: points[i].y)
             let newLayer = CAShapeLayer()
             newLayer.fillColor = UIColor.white.cgColor
-            let path = UIBezierPath(arcCenter: point, radius: CGFloat(i), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+            let path = UIBezierPath(arcCenter: point, radius: CGFloat(3), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
             newLayer.path = path.cgPath
             self.landmarksLayer?.addSublayer(newLayer)
             
@@ -351,6 +355,10 @@ extension CameraController {
         }
         
         return convertedPoints
+    }
+    
+    func classificationService(_ service: ClassificationService, didDetectEmotion emotion: String) {
+       customDelegate?.changeFacialExpressionLabel(emotion: emotion)
     }
 }
 
