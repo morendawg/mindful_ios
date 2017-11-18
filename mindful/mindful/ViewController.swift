@@ -12,7 +12,7 @@ import VisionLab
 
 class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTrackerDelegate {
     //MARK: Properties
-    private let classificationService = TextClassificationService()
+    private let textClassificationService = TextClassificationService()
    
     @IBOutlet weak var nlpInput: UITextField!
    
@@ -55,7 +55,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         nlpText.text = nlpInput.text
-        let sentiment = classificationService.predictSentiment(from: nlpInput.text!)
+        let sentiment = textClassificationService.predictSentiment(from: nlpInput.text!)
         sentimentLabel.text = sentiment
     }
 
