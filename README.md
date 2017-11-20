@@ -24,7 +24,7 @@ Download it from here: [CNN Emotions](https://drive.google.com/file/d/0B1ghKa_MY
 
 ## Authors
 * **Anvita Achar** - [Github](https://github.com/anvitaa)
-* **Karinna Loo** - [Github](https://github.com/anvitaa)
+* **Karinna Loo** - [Github](https://github.com/KarinnaLoo)
 * **Daniel Moreno** - [Personal Site](http://danmoreno.xyz)
-* **Francisco Selame** - [Github](http://danmoreno.xyz)
+* **Francisco Selame** - [Github](https://github.com/fselame)
 
