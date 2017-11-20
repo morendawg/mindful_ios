@@ -1,3 +1,4 @@
 .DS_Store
 mindful/mindful.xcodeproj/xcuserdata/*
-
+mindful/mindful.xcworkspace/xcuserdata/*
+*.mlmodel
