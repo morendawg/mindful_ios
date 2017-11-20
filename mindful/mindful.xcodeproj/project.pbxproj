@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		174B87F31FC296F600DE3FB4 /* CNNEmotions.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 174B87F21FC296F600DE3FB4 /* CNNEmotions.mlmodel */; };
 		B4861F3F1F7EB1B50071E25F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4861F3E1F7EB1B50071E25F /* AppDelegate.swift */; };
 		B4861F411F7EB1B50071E25F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4861F401F7EB1B50071E25F /* ViewController.swift */; };
 		B4861F461F7EB1B50071E25F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4861F451F7EB1B50071E25F /* Assets.xcassets */; };
@@ -15,6 +14,8 @@
 		B4861F641F7ECF340071E25F /* CGRect+Scaled.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4861F631F7ECF340071E25F /* CGRect+Scaled.swift */; };
 		B4A840721F843B4900830433 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4A840711F843B4900830433 /* GoogleService-Info.plist */; };
 		B4BCCC661FC0D4D800BC7578 /* ClassificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCCC651FC0D4D800BC7578 /* ClassificationService.swift */; };
+		B4C6102C1FC38261007BEC83 /* AnimatedGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6102B1FC38261007BEC83 /* AnimatedGradientView.swift */; };
+		B4C6102E1FC38266007BEC83 /* CNNEmotions.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B4C6102D1FC38266007BEC83 /* CNNEmotions.mlmodel */; };
 		C0361CE51F9FEC0F00472570 /* TextClassificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0361CE41F9FEC0F00472570 /* TextClassificationService.swift */; };
 		C0361CEB1F9FFFFE00472570 /* TextSentiment.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C0361CEA1F9FFFFD00472570 /* TextSentiment.mlmodel */; };
 		E3C6F22CA9097150C4192AF0 /* Pods_mindful.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB1B09D01B7AB9391C9E8CD /* Pods_mindful.framework */; };
@@ -22,7 +23,6 @@
 
 /* Begin PBXFileReference section */
 		0C4DC71C6F56625A7F299BBC /* Pods-mindful.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mindful.release.xcconfig"; path = "Pods/Target Support Files/Pods-mindful/Pods-mindful.release.xcconfig"; sourceTree = "<group>"; };
-		174B87F21FC296F600DE3FB4 /* CNNEmotions.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = CNNEmotions.mlmodel; path = ../../../../../Downloads/CNNEmotions.mlmodel; sourceTree = "<group>"; };
 		1FB1B09D01B7AB9391C9E8CD /* Pods_mindful.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mindful.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		306AEA806C831E01F94510A2 /* Pods-mindful.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mindful.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mindful/Pods-mindful.debug.xcconfig"; sourceTree = "<group>"; };
 		B4861F3B1F7EB1B50071E25F /* mindful.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mindful.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,6 +35,8 @@
 		B4861F631F7ECF340071E25F /* CGRect+Scaled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Scaled.swift"; sourceTree = "<group>"; };
 		B4A840711F843B4900830433 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B4BCCC651FC0D4D800BC7578 /* ClassificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassificationService.swift; sourceTree = "<group>"; };
+		B4C6102B1FC38261007BEC83 /* AnimatedGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedGradientView.swift; sourceTree = "<group>"; };
+		B4C6102D1FC38266007BEC83 /* CNNEmotions.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CNNEmotions.mlmodel; sourceTree = "<group>"; };
 		C0361CE41F9FEC0F00472570 /* TextClassificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextClassificationService.swift; sourceTree = "<group>"; };
 		C0361CEA1F9FFFFD00472570 /* TextSentiment.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = TextSentiment.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,6 +91,7 @@
 		B4861F3D1F7EB1B50071E25F /* mindful */ = {
 			isa = PBXGroup;
 			children = (
+				B4C6102B1FC38261007BEC83 /* AnimatedGradientView.swift */,
 				B4BCCC651FC0D4D800BC7578 /* ClassificationService.swift */,
 				C0361CE61F9FEF6F00472570 /* MLmodels */,
 				B4861F501F7EB1C60071E25F /* CameraController.swift */,
@@ -107,7 +110,7 @@
 		C0361CE61F9FEF6F00472570 /* MLmodels */ = {
 			isa = PBXGroup;
 			children = (
-				174B87F21FC296F600DE3FB4 /* CNNEmotions.mlmodel */,
+				B4C6102D1FC38266007BEC83 /* CNNEmotions.mlmodel */,
 				C0361CEA1F9FFFFD00472570 /* TextSentiment.mlmodel */,
 			);
 			path = MLmodels;
@@ -245,11 +248,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				174B87F31FC296F600DE3FB4 /* CNNEmotions.mlmodel in Sources */,
 				C0361CEB1F9FFFFE00472570 /* TextSentiment.mlmodel in Sources */,
 				C0361CE51F9FEC0F00472570 /* TextClassificationService.swift in Sources */,
 				B4861F511F7EB1C60071E25F /* CameraController.swift in Sources */,
+				B4C6102C1FC38261007BEC83 /* AnimatedGradientView.swift in Sources */,
 				B4BCCC661FC0D4D800BC7578 /* ClassificationService.swift in Sources */,
+				B4C6102E1FC38266007BEC83 /* CNNEmotions.mlmodel in Sources */,
 				B4861F641F7ECF340071E25F /* CGRect+Scaled.swift in Sources */,
 				B4861F411F7EB1B50071E25F /* ViewController.swift in Sources */,
 				B4861F3F1F7EB1B50071E25F /* AppDelegate.swift in Sources */,
