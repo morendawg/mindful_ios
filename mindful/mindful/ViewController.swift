@@ -21,6 +21,10 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
     private let nlpText = UILabel()
     
     private let sentimentLabel = UILabel()
+    
+    private let journalButton = UIButton()
+    
+    private let settingsButton = UIButton()
 
     let cameraController = CameraController()
     let classificationService = ClassificationService()
@@ -29,6 +33,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
     private let facialExpression = UILabel()
     
     private let capturePreviewView =  UIView()
+    private let audioWaveFormView = AudioWaveFormView()
     private var animatedGradientView : AnimatedGradientView?
     
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))!
@@ -39,21 +44,30 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
     
     override var prefersStatusBarHidden: Bool { return true }
     
+    var timer:Timer?
+    var change:CGFloat = 0.01
+    
     //MARK: Actions
 
-    @objc func startRecording(_ sender: UIButton) {
-        print("Start Recording")
-        captureButton.layer.borderColor = UIColor.red.cgColor
-        captureButton.layer.borderWidth = 8
-        try? self.cameraController.beginRecording()
-        
-        handleSpeech()
+    @objc func toggleRecording(_ sender: UIButton) {
+        if (sender.isSelected) {
+            try? self.cameraController.beginRecording()
+            handleSpeech()
+            print("Stop Recording")
+            sender.isSelected = false
+        } else {
+            try? self.cameraController.stopRecording()
+            audioEngine.stop()
+            recognitionRequest?.endAudio()
+            print("Start Recording")
+            sender.isSelected = true
+
+        }
+
     }
     
     @objc func stopRecording(_ sender: UIButton) {
         print("Stop Recording")
-        captureButton.layer.borderColor = UIColor.black.cgColor
-        captureButton.layer.borderWidth = 2
         try? self.cameraController.stopRecording()
         
         audioEngine.stop()
@@ -144,36 +158,57 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
         nlpInput.center = CGPoint(x: 160, y: 100)
         nlpInput.placeholder = "Tap to Edit"
         nlpInput.textColor = UIColor.blue
-        self.view.addSubview(nlpInput)
+//        self.view.addSubview(nlpInput)
         nlpText.frame = CGRect(x: 0, y: 0, width: 200, height: 21)
         nlpText.center = CGPoint(x: 160, y: 125)
         nlpText.textAlignment = NSTextAlignment.left
         nlpText.text = "."
         nlpText.textColor = UIColor.white
-        self.view.addSubview(nlpText)
+//        self.view.addSubview(nlpText)
         sentimentLabel.frame = CGRect(x: 0, y: 0, width: 200, height: 21)
-        sentimentLabel.center = CGPoint(x: 160, y: 150)
-        sentimentLabel.textAlignment = NSTextAlignment.left
-        sentimentLabel.text = "."
+        sentimentLabel.center = CGPoint(x: self.view.center.x, y: (1/5)*self.view.bounds.height - 24)
+        sentimentLabel.textAlignment = NSTextAlignment.center
+        sentimentLabel.text = "NLP Sentiment Analysis:"
         sentimentLabel.textColor =  UIColor.white
         self.view.addSubview(sentimentLabel)
-       
-        
     }
     
     func setUpFaceExLabel () {
         facialExpression.frame = CGRect(x: 0, y: 0, width: 200, height: 21)
-        facialExpression.center = CGPoint(x: 160, y: 175)
-        facialExpression.textAlignment = NSTextAlignment.left
-        facialExpression.text = "Facial Expression"
+        facialExpression.center = CGPoint(x: self.view.center.x, y: (1/5)*self.view.bounds.height)
+        facialExpression.textAlignment = NSTextAlignment.center
+        facialExpression.text = "Facial Expression:"
         facialExpression.textColor =  UIColor.white
         self.view.addSubview(facialExpression)
+    }
+    
+    func setUpButtons() {
+        journalButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        journalButton.center.y = (6/7)*self.view.bounds.height
+        journalButton.center.x = (1/5)*self.view.bounds.width
+        journalButton.setImage(#imageLiteral(resourceName: "Journal Icon"), for: UIControlState.normal)
+        self.view.addSubview(journalButton)
+        
+        settingsButton.frame = CGRect(x: 0, y: 525, width: 30, height: 30)
+        settingsButton.center.x = (4/5)*self.view.bounds.width
+        settingsButton.center.y = (6/7)*self.view.bounds.height
+        settingsButton.setImage(#imageLiteral(resourceName: "Settings Icon"), for: UIControlState.normal)
+        self.view.addSubview(settingsButton)
+        
+    }
+    
+    func setUpAudioWaveFormView() {
+        audioWaveFormView.frame = CGRect(x:0, y:0, width: self.view.bounds.width, height: 50)
+        audioWaveFormView.center = self.view.center
+        self.view.addSubview(audioWaveFormView)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let _height = self.view.bounds.height
         let _width = self.view.bounds.width
+        self.audioWaveFormView.density = 1.0
+        timer = Timer.scheduledTimer(timeInterval: 0.009, target: self, selector: #selector(ViewController.refreshAudioView(_:)), userInfo: nil, repeats: true)
         func configureCameraController() {
             capturePreviewView.frame = self.view.bounds
             self.view.addSubview(capturePreviewView)
@@ -196,12 +231,9 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
             captureButton.frame = CGRect(x: 0, y: 0, width: kButtonDiameter, height: kButtonDiameter)
             captureButton.center.x = self.view.center.x
             captureButton.center.y = (6/7)*self.view.bounds.height
-            captureButton.addTarget(self,  action: #selector(self.startRecording(_:)), for: UIControlEvents.touchDown)
-            captureButton.addTarget(self,  action: #selector(self.stopRecording(_:)), for: UIControlEvents.touchUpInside)
-            captureButton.layer.backgroundColor = UIColor.white.cgColor
-            captureButton.layer.borderColor = UIColor.black.cgColor
-            captureButton.layer.borderWidth = 2
-            captureButton.layer.cornerRadius = min(captureButton.frame.width, captureButton.frame.height) / 2
+            captureButton.setImage(#imageLiteral(resourceName: "Record Icon"), for: UIControlState.normal)
+            captureButton.setImage(#imageLiteral(resourceName: "Stop Icon"), for: UIControlState.selected)
+            captureButton.addTarget(self,  action: #selector(self.toggleRecording(_:)), for: UIControlEvents.touchUpInside)
             self.view.addSubview(captureButton)
         }
         func styleAnimatedGradientView() {
@@ -211,6 +243,8 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
         configureCameraController()
         styleAnimatedGradientView()
         styleCaptureButton()
+        setUpButtons()
+        setUpAudioWaveFormView()
         setUpNLPLabels()
         setUpFaceExLabel()
         self.cameraController.customDelegate = self
@@ -243,11 +277,18 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
         }
         
     }
+    @objc internal func refreshAudioView(_:Timer) {
+        if self.audioWaveFormView.amplitude <= self.audioWaveFormView.idleAmplitude || self.audioWaveFormView.amplitude > 1.0 {
+            self.change *= -1.0
+        }
+        
+        // Simply set the amplitude to whatever you need and the view will update itself.
+        self.audioWaveFormView.amplitude += self.change
+    }
     
     func changeFacialExpressionLabel(emotion: String?) {
         DispatchQueue.main.async(execute: {
-            print(emotion ?? "Neutral")
-            self.facialExpression.text = emotion
+            self.facialExpression.text = "Facial Expression: "+emotion!
         })
     }
     

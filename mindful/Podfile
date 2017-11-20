@@ -10,5 +10,4 @@ target 'mindful' do
   pod 'Firebase/Storage'
   pod 'VisionLab', git: 'https://github.com/cocoa-ai/VisionLab'
 
-
 end

@@ -16,6 +16,7 @@
 		B4BCCC661FC0D4D800BC7578 /* ClassificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCCC651FC0D4D800BC7578 /* ClassificationService.swift */; };
 		B4C6102C1FC38261007BEC83 /* AnimatedGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6102B1FC38261007BEC83 /* AnimatedGradientView.swift */; };
 		B4C6102E1FC38266007BEC83 /* CNNEmotions.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B4C6102D1FC38266007BEC83 /* CNNEmotions.mlmodel */; };
+		B4C610301FC3949C007BEC83 /* AudioWaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6102F1FC3949C007BEC83 /* AudioWaveformView.swift */; };
 		C0361CE51F9FEC0F00472570 /* TextClassificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0361CE41F9FEC0F00472570 /* TextClassificationService.swift */; };
 		C0361CEB1F9FFFFE00472570 /* TextSentiment.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C0361CEA1F9FFFFD00472570 /* TextSentiment.mlmodel */; };
 		E3C6F22CA9097150C4192AF0 /* Pods_mindful.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB1B09D01B7AB9391C9E8CD /* Pods_mindful.framework */; };
@@ -37,6 +38,7 @@
 		B4BCCC651FC0D4D800BC7578 /* ClassificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassificationService.swift; sourceTree = "<group>"; };
 		B4C6102B1FC38261007BEC83 /* AnimatedGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedGradientView.swift; sourceTree = "<group>"; };
 		B4C6102D1FC38266007BEC83 /* CNNEmotions.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CNNEmotions.mlmodel; sourceTree = "<group>"; };
+		B4C6102F1FC3949C007BEC83 /* AudioWaveformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioWaveformView.swift; sourceTree = "<group>"; };
 		C0361CE41F9FEC0F00472570 /* TextClassificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextClassificationService.swift; sourceTree = "<group>"; };
 		C0361CEA1F9FFFFD00472570 /* TextSentiment.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = TextSentiment.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,6 +105,7 @@
 				B4A840711F843B4900830433 /* GoogleService-Info.plist */,
 				B4861F4A1F7EB1B50071E25F /* Info.plist */,
 				C0361CE41F9FEC0F00472570 /* TextClassificationService.swift */,
+				B4C6102F1FC3949C007BEC83 /* AudioWaveformView.swift */,
 			);
 			path = mindful;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				C0361CE51F9FEC0F00472570 /* TextClassificationService.swift in Sources */,
 				B4861F511F7EB1C60071E25F /* CameraController.swift in Sources */,
 				B4C6102C1FC38261007BEC83 /* AnimatedGradientView.swift in Sources */,
+				B4C610301FC3949C007BEC83 /* AudioWaveformView.swift in Sources */,
 				B4BCCC661FC0D4D800BC7578 /* ClassificationService.swift in Sources */,
 				B4C6102E1FC38266007BEC83 /* CNNEmotions.mlmodel in Sources */,
 				B4861F641F7ECF340071E25F /* CGRect+Scaled.swift in Sources */,
