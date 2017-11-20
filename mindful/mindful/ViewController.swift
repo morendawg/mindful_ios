@@ -29,6 +29,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
     private let facialExpression = UILabel()
     
     private let capturePreviewView =  UIView()
+    private var animatedGradientView : AnimatedGradientView?
     
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))!
     
@@ -104,6 +105,9 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
                 self.recognitionTask = nil
                 
                 self.captureButton.isEnabled = true
+                let sentiment = self.textClassificationService.predictSentiment(from: self.nlpInput.text!)
+                self.sentimentLabel.text = sentiment
+                self.animatedGradientView?.changeSentimentGradient(sentiment: sentiment)
             }
         })
         
@@ -131,6 +135,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
         nlpText.text = nlpInput.text
         let sentiment = textClassificationService.predictSentiment(from: nlpInput.text!)
         sentimentLabel.text = sentiment
+        animatedGradientView?.changeSentimentGradient(sentiment: sentiment)
     }
     
     func setUpNLPLabels() {
@@ -199,7 +204,12 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
             captureButton.layer.cornerRadius = min(captureButton.frame.width, captureButton.frame.height) / 2
             self.view.addSubview(captureButton)
         }
+        func styleAnimatedGradientView() {
+            animatedGradientView = AnimatedGradientView(frame: self.view.bounds)
+            self.view.addSubview(animatedGradientView!)
+        }
         configureCameraController()
+        styleAnimatedGradientView()
         styleCaptureButton()
         setUpNLPLabels()
         setUpFaceExLabel()
