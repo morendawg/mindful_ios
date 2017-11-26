@@ -106,7 +106,6 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
             var isFinal = false
             
             if result != nil {
-                
                 self.nlpInput.text = result?.bestTranscription.formattedString
                 isFinal = (result?.isFinal)!
             }
@@ -134,6 +133,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
         
         do {
             try audioEngine.start()
+            
         } catch {
             print("audioEngine couldn't start because of an error.")
         }
