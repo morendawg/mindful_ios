@@ -9,7 +9,7 @@
 import UIKit
 import VisionLab
 import Speech
-
+import Accelerate
 
 class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTrackerDelegate, SFSpeechRecognizerDelegate {
     //MARK: Properties
@@ -41,10 +41,12 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
+    private var volumeFloat:Float = 0.0
     
     override var prefersStatusBarHidden: Bool { return true }
     
     var timer:Timer?
+    var volume_timer:Timer?
     var change:CGFloat = 0.01
     
     //MARK: Actions
@@ -124,9 +126,19 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
             }
         })
         
+        
         let recordingFormat = inputNode.outputFormat(forBus: 0)
         inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, when) in
+            
             self.recognitionRequest?.append(buffer)
+//            let arraySize = Int(buffer.frameLength)
+//            let samples = Array(UnsafeBufferPointer(start: buffer.floatChannelData![0], count:arraySize))
+//            
+//            //do something with samples
+//            let volume = 20 * log10(floatArray.reduce(0){ $0 + $1} / Float(arraySize))
+//            if(!volume.isNaN){
+//                print("this is the current volume: \(volume)")
+//            }
         }
         
         audioEngine.prepare()
@@ -138,6 +150,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
             print("audioEngine couldn't start because of an error.")
         }
     }
+    
     
     //MARK: UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -209,6 +222,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
         let _width = self.view.bounds.width
         self.audioWaveFormView.density = 1.0
         timer = Timer.scheduledTimer(timeInterval: 0.009, target: self, selector: #selector(ViewController.refreshAudioView(_:)), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.1 , target: self, selector: #selector(updateMeter), userInfo: nil, repeats: true)
         func configureCameraController() {
             capturePreviewView.frame = self.view.bounds
             self.view.addSubview(capturePreviewView)
@@ -290,6 +304,10 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
         DispatchQueue.main.async(execute: {
             self.facialExpression.text = "Facial Expression: "+emotion!
         })
+    }
+    
+    @objc func updateMeter() {
+//        self.audioWaveFormView.amplitude = CGFloat(volumeFloat*100)
     }
     
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
