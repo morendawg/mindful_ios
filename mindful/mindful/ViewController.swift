@@ -52,29 +52,18 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
     //MARK: Actions
 
     @objc func toggleRecording(_ sender: UIButton) {
-        if (sender.isSelected) {
+        if (!sender.isSelected) {
             try? self.cameraController.beginRecording()
             handleSpeech()
             print("Stop Recording")
-            sender.isSelected = false
+            sender.isSelected = true
         } else {
             try? self.cameraController.stopRecording()
             audioEngine.stop()
             recognitionRequest?.endAudio()
             print("Start Recording")
-            sender.isSelected = true
-
+            sender.isSelected = false
         }
-
-    }
-    
-    @objc func stopRecording(_ sender: UIButton) {
-        print("Stop Recording")
-        try? self.cameraController.stopRecording()
-        
-        audioEngine.stop()
-        recognitionRequest?.endAudio()
-        captureButton.isEnabled = false
     }
     
     func handleSpeech() {
@@ -121,7 +110,7 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
                 
                 self.captureButton.isEnabled = true
                 let sentiment = self.textClassificationService.predictSentiment(from: self.nlpInput.text!)
-                self.sentimentLabel.text = sentiment
+                self.sentimentLabel.text = "NLP Sentiment: " + sentiment
                 self.animatedGradientView?.changeSentimentGradient(sentiment: sentiment)
             }
         })
@@ -181,13 +170,13 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
         sentimentLabel.frame = CGRect(x: 0, y: 0, width: 200, height: 21)
         sentimentLabel.center = CGPoint(x: self.view.center.x, y: (1/5)*self.view.bounds.height - 24)
         sentimentLabel.textAlignment = NSTextAlignment.center
-        sentimentLabel.text = "NLP Sentiment Analysis:"
+        sentimentLabel.text = "NLP Sentiment:"
         sentimentLabel.textColor =  UIColor.white
         self.view.addSubview(sentimentLabel)
     }
     
     func setUpFaceExLabel () {
-        facialExpression.frame = CGRect(x: 0, y: 0, width: 200, height: 21)
+        facialExpression.frame = CGRect(x: 0, y: 0, width: 500, height: 21)
         facialExpression.center = CGPoint(x: self.view.center.x, y: (1/5)*self.view.bounds.height)
         facialExpression.textAlignment = NSTextAlignment.center
         facialExpression.text = "Facial Expression:"
