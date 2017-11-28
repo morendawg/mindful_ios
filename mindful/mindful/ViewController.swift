@@ -55,13 +55,13 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
         if (!sender.isSelected) {
             try? self.cameraController.beginRecording()
             handleSpeech()
-            print("Stop Recording")
+            print("Start Recording")
             sender.isSelected = true
         } else {
             try? self.cameraController.stopRecording()
             audioEngine.stop()
             recognitionRequest?.endAudio()
-            print("Start Recording")
+            print("Stop Recording")
             sender.isSelected = false
         }
     }
@@ -251,7 +251,9 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
         setUpNLPLabels()
         setUpFaceExLabel()
         self.cameraController.customDelegate = self
-        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
+        tap.numberOfTapsRequired = 2
+        view.addGestureRecognizer(tap)
         speechRecognizer.delegate = self;
         SFSpeechRecognizer.requestAuthorization { (authStatus) in
             
@@ -280,6 +282,12 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
         }
         
     }
+    
+    @objc func doubleTapped(){
+        self.animatedGradientView?.isHidden = true
+        self.audioWaveFormView.isHidden = true
+    }
+    
     @objc internal func refreshAudioView(_:Timer) {
         if self.audioWaveFormView.amplitude <= self.audioWaveFormView.idleAmplitude || self.audioWaveFormView.amplitude > 1.0 {
             self.change *= -1.0
