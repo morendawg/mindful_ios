@@ -11,12 +11,12 @@ import VisionLab
 import Speech
 
 
-class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTrackerDelegate, SFSpeechRecognizerDelegate {
+class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate, FacialExpressionTrackerDelegate, SFSpeechRecognizerDelegate {
     //MARK: Properties
     private let textClassificationService = TextClassificationService()
     
     //MARK : UI
-    private let nlpInput =  UITextField()
+    private let nlpInput =  UITextView()
    
     private let nlpText = UILabel()
     
@@ -142,18 +142,12 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
     }
     
     func setUpNLPLabels() {
-        nlpInput.frame = CGRect(x: 0, y: 0, width: 200, height: 21)
+        nlpInput.frame = CGRect(x: 0, y: 0, width: 300, height: 100)
         nlpInput.delegate = self
-        nlpInput.center = CGPoint(x: 160, y: 100)
-        nlpInput.placeholder = "Tap to Edit"
-        nlpInput.textColor = UIColor.blue
-//        self.view.addSubview(nlpInput)
-        nlpText.frame = CGRect(x: 0, y: 0, width: 200, height: 21)
-        nlpText.center = CGPoint(x: 160, y: 125)
-        nlpText.textAlignment = NSTextAlignment.left
-        nlpText.text = "."
-        nlpText.textColor = UIColor.white
-//        self.view.addSubview(nlpText)
+        nlpInput.center = CGPoint(x: self.view.center.x, y: (1/5)*self.view.bounds.height + 90)
+        nlpInput.backgroundColor = UIColor.clear
+        nlpInput.textColor = UIColor.white
+        self.view.addSubview(nlpInput)
         sentimentLabel.frame = CGRect(x: 0, y: 0, width: 200, height: 21)
         sentimentLabel.center = CGPoint(x: self.view.center.x, y: (1/5)*self.view.bounds.height - 24)
         sentimentLabel.textAlignment = NSTextAlignment.center
