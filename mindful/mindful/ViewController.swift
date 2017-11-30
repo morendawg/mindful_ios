@@ -284,8 +284,8 @@ class ViewController: UIViewController, UITextFieldDelegate, FacialExpressionTra
     }
     
     @objc func doubleTapped(){
-        self.animatedGradientView?.isHidden = true
-        self.audioWaveFormView.isHidden = true
+        self.animatedGradientView?.isHidden = !((self.animatedGradientView?.isHidden)!)
+        self.audioWaveFormView.isHidden = !self.audioWaveFormView.isHidden
     }
     
     @objc internal func refreshAudioView(_:Timer) {
