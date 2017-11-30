@@ -9,7 +9,7 @@
 import UIKit
 import VisionLab
 import Speech
-
+import Accelerate
 
 class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate, FacialExpressionTrackerDelegate, SFSpeechRecognizerDelegate {
     //MARK: Properties
@@ -41,10 +41,12 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate,
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
+    private var volumeFloat:Float = 0.0
     
     override var prefersStatusBarHidden: Bool { return true }
     
     var timer:Timer?
+    var volume_timer:Timer?
     var change:CGFloat = 0.01
     
     //MARK: Actions
@@ -53,13 +55,13 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate,
         if (!sender.isSelected) {
             try? self.cameraController.beginRecording()
             handleSpeech()
-            print("Stop Recording")
+            print("Start Recording")
             sender.isSelected = true
         } else {
             try? self.cameraController.stopRecording()
             audioEngine.stop()
             recognitionRequest?.endAudio()
-            print("Start Recording")
+            print("Stop Recording")
             sender.isSelected = false
         }
     }
@@ -95,7 +97,6 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate,
             var isFinal = false
             
             if result != nil {
-                
                 self.nlpInput.text = result?.bestTranscription.formattedString
                 isFinal = (result?.isFinal)!
             }
@@ -114,19 +115,31 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate,
             }
         })
         
+        
         let recordingFormat = inputNode.outputFormat(forBus: 0)
         inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, when) in
+            
             self.recognitionRequest?.append(buffer)
+//            let arraySize = Int(buffer.frameLength)
+//            let samples = Array(UnsafeBufferPointer(start: buffer.floatChannelData![0], count:arraySize))
+//            
+//            //do something with samples
+//            let volume = 20 * log10(floatArray.reduce(0){ $0 + $1} / Float(arraySize))
+//            if(!volume.isNaN){
+//                print("this is the current volume: \(volume)")
+//            }
         }
         
         audioEngine.prepare()
         
         do {
             try audioEngine.start()
+            
         } catch {
             print("audioEngine couldn't start because of an error.")
         }
     }
+    
     
     //MARK: UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -192,6 +205,7 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate,
         let _width = self.view.bounds.width
         self.audioWaveFormView.density = 1.0
         timer = Timer.scheduledTimer(timeInterval: 0.009, target: self, selector: #selector(ViewController.refreshAudioView(_:)), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.1 , target: self, selector: #selector(updateMeter), userInfo: nil, repeats: true)
         func configureCameraController() {
             capturePreviewView.frame = self.view.bounds
             self.view.addSubview(capturePreviewView)
@@ -231,7 +245,9 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate,
         setUpNLPLabels()
         setUpFaceExLabel()
         self.cameraController.customDelegate = self
-        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
+        tap.numberOfTapsRequired = 2
+        view.addGestureRecognizer(tap)
         speechRecognizer.delegate = self;
         SFSpeechRecognizer.requestAuthorization { (authStatus) in
             
@@ -260,6 +276,12 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate,
         }
         
     }
+    
+    @objc func doubleTapped(){
+        self.animatedGradientView?.isHidden = !((self.animatedGradientView?.isHidden)!)
+        self.audioWaveFormView.isHidden = !self.audioWaveFormView.isHidden
+    }
+    
     @objc internal func refreshAudioView(_:Timer) {
         if self.audioWaveFormView.amplitude <= self.audioWaveFormView.idleAmplitude || self.audioWaveFormView.amplitude > 1.0 {
             self.change *= -1.0
@@ -273,6 +295,10 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate,
         DispatchQueue.main.async(execute: {
             self.facialExpression.text = "Facial Expression: "+emotion!
         })
+    }
+    
+    @objc func updateMeter() {
+//        self.audioWaveFormView.amplitude = CGFloat(volumeFloat*100)
     }
     
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
