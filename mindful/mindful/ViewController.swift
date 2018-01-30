@@ -22,6 +22,8 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate,
     
     private let sentimentLabel = UILabel()
     
+    private let userPrompt = UILabel()
+    
     private let journalButton = UIButton()
     
     private let settingsButton = UIButton()
@@ -42,6 +44,9 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate,
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
     private var volumeFloat:Float = 0.0
+    
+    var promptArray = ["How are you today?", "What was the best part of your day?", "What was the worst part of your day?", "What are you gonna do tomorrow that you didn't do today?"]
+    var promptIndex = 0;
     
     override var prefersStatusBarHidden: Bool { return true }
     
@@ -161,12 +166,29 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate,
         nlpInput.backgroundColor = UIColor.clear
         nlpInput.textColor = UIColor.white
         self.view.addSubview(nlpInput)
+        
         sentimentLabel.frame = CGRect(x: 0, y: 0, width: 200, height: 21)
         sentimentLabel.center = CGPoint(x: self.view.center.x, y: (1/5)*self.view.bounds.height - 24)
         sentimentLabel.textAlignment = NSTextAlignment.center
         sentimentLabel.text = "NLP Sentiment:"
         sentimentLabel.textColor =  UIColor.white
         self.view.addSubview(sentimentLabel)
+        
+        userPrompt.frame = CGRect(x: 0, y: 0, width: 300, height: 100)
+        userPrompt.center = CGPoint(x: self.view.center.x, y: (1/5)*self.view.bounds.height + 340)
+        userPrompt.textAlignment = NSTextAlignment.center
+        userPrompt.numberOfLines = 0;
+        userPrompt.text = "Click for next prompt..."
+        userPrompt.textColor =  UIColor.white
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
+        userPrompt.isUserInteractionEnabled = true
+        userPrompt.addGestureRecognizer(tap)
+        self.view.addSubview(userPrompt)
+    }
+    
+    @objc func tapFunction(sender:UITapGestureRecognizer) {
+        userPrompt.text = promptArray[promptIndex%promptArray.count];
+        promptIndex+=1
     }
     
     func setUpFaceExLabel () {
