@@ -48,6 +48,9 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate,
     var promptArray = ["How are you today?", "What was the best part of your day?", "What was the worst part of your day?", "What are you gonna do tomorrow that you didn't do today?"]
     var promptIndex = 0;
     
+    private let weatherDataManager = WeatherDataManager(baseURL: API.AuthenticatedBaseURL)
+
+    
     override var prefersStatusBarHidden: Bool { return true }
     
     var timer:Timer?
@@ -68,6 +71,7 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate,
             recognitionRequest?.endAudio()
             print("Stop Recording")
             sender.isSelected = false
+            
         }
     }
     
@@ -221,6 +225,12 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate,
         self.view.addSubview(audioWaveFormView)
     }
     
+    func setUpContext() {
+        weatherDataManager.weatherDataForCurrentLocation() { (response, error) in
+            print(response)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let _height = self.view.bounds.height
@@ -266,6 +276,7 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate,
         setUpAudioWaveFormView()
         setUpNLPLabels()
         setUpFaceExLabel()
+        setUpContext()
         self.cameraController.customDelegate = self
         let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
         tap.numberOfTapsRequired = 2
