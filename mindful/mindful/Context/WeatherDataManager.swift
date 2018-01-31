@@ -31,7 +31,7 @@ enum WeatherDataManagerError : Error {
 }
 
 final class WeatherDataManager {
-    typealias WeatherDataCompletion = (AnyObject?, WeatherDataManagerError?) -> ()
+    typealias WeatherDataCompletion = (Any?, WeatherDataManagerError?) -> ()
     
     let locationManager = CLLocationManager()
     var currentLocation: CLLocation!
@@ -66,7 +66,6 @@ final class WeatherDataManager {
             let URL = baseURL.appendingPathComponent("\(currentLocation.coordinate.latitude),\(currentLocation.coordinate.longitude)")
             URLSession.shared.dataTask(with: URL) {
                 (data, response, error) in self.didFetchWeatherData(data:data, response: response, error: error, completion: completion)}.resume()
-            
         }
     }
     
