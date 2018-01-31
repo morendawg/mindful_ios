@@ -29,6 +29,8 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate,
     private let settingsButton = UIButton()
 
     let cameraController = CameraController()
+    let settingsController = SettingsController()
+    
     let classificationService = ClassificationService()
     
     private let captureButton = UIButton()
@@ -211,8 +213,13 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate,
         settingsButton.center.x = (4/5)*self.view.bounds.width
         settingsButton.center.y = (6/7)*self.view.bounds.height
         settingsButton.setImage(#imageLiteral(resourceName: "Settings Icon"), for: UIControlState.normal)
+        settingsButton.addTarget(self,  action: #selector(self.settingsFunction(_:)), for: UIControlEvents.touchUpInside)
         self.view.addSubview(settingsButton)
         
+    }
+    
+    @objc func settingsFunction(_ sender: UIButton) {
+        self.present(settingsController, animated: true, completion: nil)
     }
     
     func setUpAudioWaveFormView() {

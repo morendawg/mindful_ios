@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17A1A41720213DF7000D3F04 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1A41620213DF7000D3F04 /* SettingsController.swift */; };
 		B4861F3F1F7EB1B50071E25F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4861F3E1F7EB1B50071E25F /* AppDelegate.swift */; };
 		B4861F411F7EB1B50071E25F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4861F401F7EB1B50071E25F /* ViewController.swift */; };
 		B4861F461F7EB1B50071E25F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4861F451F7EB1B50071E25F /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		0C4DC71C6F56625A7F299BBC /* Pods-mindful.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mindful.release.xcconfig"; path = "Pods/Target Support Files/Pods-mindful/Pods-mindful.release.xcconfig"; sourceTree = "<group>"; };
+		17A1A41620213DF7000D3F04 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		1FB1B09D01B7AB9391C9E8CD /* Pods_mindful.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mindful.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		306AEA806C831E01F94510A2 /* Pods-mindful.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mindful.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mindful/Pods-mindful.debug.xcconfig"; sourceTree = "<group>"; };
 		B4861F3B1F7EB1B50071E25F /* mindful.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mindful.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +108,7 @@
 				B4861F4A1F7EB1B50071E25F /* Info.plist */,
 				C0361CE41F9FEC0F00472570 /* TextClassificationService.swift */,
 				B4C6102F1FC3949C007BEC83 /* AudioWaveformView.swift */,
+				17A1A41620213DF7000D3F04 /* SettingsController.swift */,
 			);
 			path = mindful;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				B4861F511F7EB1C60071E25F /* CameraController.swift in Sources */,
 				B4C6102C1FC38261007BEC83 /* AnimatedGradientView.swift in Sources */,
 				B4C610301FC3949C007BEC83 /* AudioWaveformView.swift in Sources */,
+				17A1A41720213DF7000D3F04 /* SettingsController.swift in Sources */,
 				B4BCCC661FC0D4D800BC7578 /* ClassificationService.swift in Sources */,
 				B4C6102E1FC38266007BEC83 /* CNNEmotions.mlmodel in Sources */,
 				B4861F641F7ECF340071E25F /* CGRect+Scaled.swift in Sources */,
