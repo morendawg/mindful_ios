@@ -10,8 +10,14 @@ import UIKit
 import VisionLab
 import Speech
 import Accelerate
+import Firebase
 
 class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate, FacialExpressionTrackerDelegate, SFSpeechRecognizerDelegate {
+    
+    
+    
+    
+    
     //MARK: Properties
     private let textClassificationService = TextClassificationService()
     
@@ -230,6 +236,7 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("real is happening")
         let _height = self.view.bounds.height
         let _width = self.view.bounds.width
         self.audioWaveFormView.density = 1.0

@@ -9,20 +9,32 @@
 import UIKit
 import Firebase
 
+
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+      
+       
+        
+        
         window = UIWindow(frame: UIScreen.main.bounds)
-        let homeViewController = ViewController()
-        window!.rootViewController = homeViewController
+        
+        let loginViewController = MainViewController()
+     
+//        let homeViewController = ViewController()
+//        window!.rootViewController = homeViewController
+//        window!.makeKeyAndVisible()
+        window!.rootViewController = loginViewController
         window!.makeKeyAndVisible()
         return true
+        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
