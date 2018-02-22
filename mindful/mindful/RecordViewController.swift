@@ -36,6 +36,8 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
 
     let cameraController = CameraController()
     let settingsController = SettingsController()
+    let journalController = JournalViewController()
+    
     
     let classificationService = ClassificationService()
     
@@ -213,6 +215,7 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
         journalButton.center.y = (6/7)*self.view.bounds.height
         journalButton.center.x = (1/5)*self.view.bounds.width
         journalButton.setImage(#imageLiteral(resourceName: "Journal Icon"), for: UIControlState.normal)
+        journalButton.addTarget(self,  action: #selector(self.openJournal(_:)), for: UIControlEvents.touchUpInside)
         self.view.addSubview(journalButton)
         
         settingsButton.frame = CGRect(x: 0, y: 525, width: 30, height: 30)
@@ -226,6 +229,10 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
     
     @objc func settingsFunction(_ sender: UIButton) {
         self.present(settingsController, animated: true, completion: nil)
+    }
+    
+    @objc func openJournal(_ sender: UIButton) {
+        self.present(journalController, animated: true, completion: nil)
     }
     
     func setUpAudioWaveFormView() {

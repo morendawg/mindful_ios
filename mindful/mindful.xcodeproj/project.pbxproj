@@ -14,10 +14,11 @@
 		93F6597020336AC100B6D324 /* CNNEmotions.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 93F6596E20336AC100B6D324 /* CNNEmotions.mlmodel */; };
 		93F9D62E203376F300FC2D0E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93F9D62D203376F200FC2D0E /* GoogleService-Info.plist */; };
 		B4861F3F1F7EB1B50071E25F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4861F3E1F7EB1B50071E25F /* AppDelegate.swift */; };
-		B4861F411F7EB1B50071E25F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4861F401F7EB1B50071E25F /* ViewController.swift */; };
+		B4861F411F7EB1B50071E25F /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4861F401F7EB1B50071E25F /* RecordViewController.swift */; };
 		B4861F461F7EB1B50071E25F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4861F451F7EB1B50071E25F /* Assets.xcassets */; };
 		B4861F511F7EB1C60071E25F /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4861F501F7EB1C60071E25F /* CameraController.swift */; };
 		B4861F641F7ECF340071E25F /* CGRect+Scaled.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4861F631F7ECF340071E25F /* CGRect+Scaled.swift */; };
+		B48DE06B203F8A6800E9AA6F /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48DE06A203F8A6800E9AA6F /* JournalViewController.swift */; };
 		B4BCCC661FC0D4D800BC7578 /* ClassificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCCC651FC0D4D800BC7578 /* ClassificationService.swift */; };
 		B4C6102C1FC38261007BEC83 /* AnimatedGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6102B1FC38261007BEC83 /* AnimatedGradientView.swift */; };
 		B4C610301FC3949C007BEC83 /* AudioWaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C6102F1FC3949C007BEC83 /* AudioWaveformView.swift */; };
@@ -34,12 +35,13 @@
 		93F9D62D203376F200FC2D0E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B4861F3B1F7EB1B50071E25F /* mindful.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mindful.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4861F3E1F7EB1B50071E25F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B4861F401F7EB1B50071E25F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B4861F401F7EB1B50071E25F /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		B4861F451F7EB1B50071E25F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B4861F4A1F7EB1B50071E25F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4861F501F7EB1C60071E25F /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		B4861F521F7EBEB10071E25F /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B4861F631F7ECF340071E25F /* CGRect+Scaled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Scaled.swift"; sourceTree = "<group>"; };
+		B48DE06A203F8A6800E9AA6F /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		B4BCCC651FC0D4D800BC7578 /* ClassificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassificationService.swift; sourceTree = "<group>"; };
 		B4C6102B1FC38261007BEC83 /* AnimatedGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedGradientView.swift; sourceTree = "<group>"; };
 		B4C6102F1FC3949C007BEC83 /* AudioWaveformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioWaveformView.swift; sourceTree = "<group>"; };
@@ -104,7 +106,8 @@
 				B4861F501F7EB1C60071E25F /* CameraController.swift */,
 				B4861F3E1F7EB1B50071E25F /* AppDelegate.swift */,
 				B4861F631F7ECF340071E25F /* CGRect+Scaled.swift */,
-				B4861F401F7EB1B50071E25F /* ViewController.swift */,
+				B4861F401F7EB1B50071E25F /* RecordViewController.swift */,
+				B48DE06A203F8A6800E9AA6F /* JournalViewController.swift */,
 				93F6596B203360BE00B6D324 /* MainViewController.swift */,
 				B4861F451F7EB1B50071E25F /* Assets.xcassets */,
 				B4861F521F7EBEB10071E25F /* LaunchScreen.storyboard */,
@@ -244,11 +247,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-mindful/Pods-mindful-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseAuthUI.bundle,
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -272,7 +275,8 @@
 				17A1A41720213DF7000D3F04 /* SettingsController.swift in Sources */,
 				B4BCCC661FC0D4D800BC7578 /* ClassificationService.swift in Sources */,
 				B4861F641F7ECF340071E25F /* CGRect+Scaled.swift in Sources */,
-				B4861F411F7EB1B50071E25F /* ViewController.swift in Sources */,
+				B4861F411F7EB1B50071E25F /* RecordViewController.swift in Sources */,
+				B48DE06B203F8A6800E9AA6F /* JournalViewController.swift in Sources */,
 				B4861F3F1F7EB1B50071E25F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,10 +397,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = UCPSGU9EL6;
+				DEVELOPMENT_TEAM = 72VRX99PNU;
 				INFOPLIST_FILE = mindful/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.seniordesignc.mindful;
+				PRODUCT_BUNDLE_IDENTIFIER = com.seniordesign.mindful;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -409,10 +413,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = UCPSGU9EL6;
+				DEVELOPMENT_TEAM = 72VRX99PNU;
 				INFOPLIST_FILE = mindful/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.seniordesignc.mindful;
+				PRODUCT_BUNDLE_IDENTIFIER = com.seniordesign.mindful;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
