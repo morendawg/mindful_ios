@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let loginViewController = MainViewController()
      
-//        let homeViewController = ViewController()
+//        let homeViewController = RecordViewController()
 //        window!.rootViewController = homeViewController
 //        window!.makeKeyAndVisible()
         window!.rootViewController = loginViewController

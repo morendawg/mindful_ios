@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  RecordViewController.swift
 //  mindful
 //
 //  Created by Daniel Moreno on 9/29/17.
@@ -12,7 +12,7 @@ import Speech
 import Accelerate
 import Firebase
 
-class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate, FacialExpressionTrackerDelegate, SFSpeechRecognizerDelegate {
+class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate, FacialExpressionTrackerDelegate, SFSpeechRecognizerDelegate {
     
     
     
@@ -240,7 +240,7 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate,
         let _height = self.view.bounds.height
         let _width = self.view.bounds.width
         self.audioWaveFormView.density = 1.0
-        timer = Timer.scheduledTimer(timeInterval: 0.009, target: self, selector: #selector(ViewController.refreshAudioView(_:)), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.009, target: self, selector: #selector(RecordViewController.refreshAudioView(_:)), userInfo: nil, repeats: true)
         timer = Timer.scheduledTimer(timeInterval: 0.1 , target: self, selector: #selector(updateMeter), userInfo: nil, repeats: true)
         func configureCameraController() {
             capturePreviewView.frame = self.view.bounds

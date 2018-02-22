@@ -52,8 +52,8 @@ class MainViewController: UIViewController, FUIAuthDelegate {
             let x = authDataResult?.user.email
             print("siging")
             print(x!)
-            var mainAppController: ViewController? = nil
-            mainAppController = ViewController()
+            var mainAppController: RecordViewController? = nil
+            mainAppController = RecordViewController()
             self.show(mainAppController!, sender: nil);
             
             return
