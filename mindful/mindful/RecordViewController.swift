@@ -12,7 +12,7 @@ import Speech
 import Accelerate
 import Firebase
 import FirebaseAuth
-
+import FirebaseDatabase
 class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate, FacialExpressionTrackerDelegate, SFSpeechRecognizerDelegate {
     
      fileprivate(set) var auth:Auth?
@@ -28,6 +28,7 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
     private let nlpText = UILabel()
     
     private let sentimentLabel = UILabel()
+    private var sentiment = ""
     
     private let userPrompt = UILabel()
     
@@ -87,7 +88,7 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
                          "location":"here",
                          "weather" : "very cold",
                          "transcript":self.nlpInput.text,
-                         "emotion":"",
+                         "sentiment":self.sentiment,
                          "time": date] as [String : Any]
             let childUpdates = ["/entries/\(entrykey)": entry,
                                 "/user-entries/\(uid ?? "NOUSERID")/\(entrykey)/": entry]
@@ -144,9 +145,9 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
                 self.recognitionTask = nil
                 
                 self.captureButton.isEnabled = true
-                let sentiment = self.textClassificationService.predictSentiment(from: self.nlpInput.text!)
-                self.sentimentLabel.text = "NLP Sentiment: " + sentiment
-                self.animatedGradientView?.changeSentimentGradient(sentiment: sentiment)
+                self.sentiment = self.textClassificationService.predictSentiment(from: self.nlpInput.text!)
+                self.sentimentLabel.text = "NLP Sentiment: " + self.sentiment
+                self.animatedGradientView?.changeSentimentGradient(sentiment: self.sentiment)
             }
         })
         
@@ -184,7 +185,7 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         nlpText.text = nlpInput.text
-        let sentiment = textClassificationService.predictSentiment(from: nlpInput.text!)
+        self.sentiment = textClassificationService.predictSentiment(from: nlpInput.text!)
         sentimentLabel.text = sentiment
         animatedGradientView?.changeSentimentGradient(sentiment: sentiment)
     }
