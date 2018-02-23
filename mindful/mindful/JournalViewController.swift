@@ -8,37 +8,38 @@
 
 import UIKit
 
-class JournalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class JournalViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    private let myArray: NSArray = ["Entry One","Entry Two","Entry Three"]
-    private var myTableView: UITableView!
+    var dateArray = ["February 8, 2018", "February 14, 2018", "February 20, 2018", "February 22, 2018"]
+    var emojiArray = ["😴", "😔", "😏", "😡"]
+    var emotionsArray = ["sleepy, sad", "sad, mellow", "cheeky, happy", "angry, meh"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
-        let displayWidth: CGFloat = self.view.frame.width
-        let displayHeight: CGFloat = self.view.frame.height
-        
-        myTableView = UITableView(frame: CGRect(x: 0, y: barHeight, width: displayWidth, height: displayHeight - barHeight))
-        myTableView.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
-        myTableView.dataSource = self
-        myTableView.delegate = self
-        self.view.addSubview(myTableView)
+        let tableView = UITableView(frame: view.bounds, style: UITableViewStyle.grouped)
+        tableView.delegate = self
+        tableView.dataSource = self
+        view.addSubview(tableView)
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Num: \(indexPath.row)")
-        print("Value: \(myArray[indexPath.row])")
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 85
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myArray.count
+        return dateArray.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath as IndexPath)
-        cell.textLabel!.text = "\(myArray[indexPath.row])"
+        
+        let cell = JournalTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "myIdentifier")
+        cell.dateLabel.text = dateArray[indexPath.row]
+        cell.emojiLabel.text = emojiArray[indexPath.row]
+        cell.emotionLabel.text = emotionsArray[indexPath.row]
         return cell
     }
+    
 }
