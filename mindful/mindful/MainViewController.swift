@@ -50,10 +50,11 @@ class MainViewController: UIViewController, FUIAuthDelegate {
        
         guard let authError = error else {
             
-            let x = authDataResult?.user.email
-            var mainAppController: ViewController? = nil
-            mainAppController = ViewController()
+
+            var mainAppController: RecordViewController? = nil
+            mainAppController = RecordViewController()
             self.show(mainAppController!, sender: nil)
+
             
             return
         }

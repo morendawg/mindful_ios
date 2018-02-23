@@ -17,21 +17,21 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.seniordesignc.mindful</string>
+	<string>com.seniordesign.mindful</string>
 	<key>PROJECT_ID</key>
 	<string>mindful-senior-design</string>
 	<key>STORAGE_BUCKET</key>
 	<string>mindful-senior-design.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:619514836495:ios:6e884e2e430fe622</string>
 	<key>DATABASE_URL</key>

@@ -28,9 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
+
         
         if auth.currentUser != nil {
-            let homeViewController = ViewController()
+            let homeViewController = RecordViewController()
             window!.rootViewController = homeViewController
             
         } else {
