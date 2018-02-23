@@ -23,7 +23,8 @@ class MainViewController: UIViewController, FUIAuthDelegate {
         self.auth = Auth.auth()
         self.authUI = FUIAuth.defaultAuthUI()
         self.authUI?.delegate = self
-       
+        
+
         
         self.authStateListenerHandle = self.auth?.addStateDidChangeListener { (auth, user) in
             guard user != nil else {
@@ -50,11 +51,9 @@ class MainViewController: UIViewController, FUIAuthDelegate {
         guard let authError = error else {
             
             let x = authDataResult?.user.email
-            print("siging")
-            print(x!)
             var mainAppController: ViewController? = nil
             mainAppController = ViewController()
-            self.show(mainAppController!, sender: nil);
+            self.show(mainAppController!, sender: nil)
             
             return
         }
