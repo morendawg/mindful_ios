@@ -24,14 +24,14 @@ class JournalTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        let gap : CGFloat = 100
+        let gap : CGFloat = 85
         let labelHeight: CGFloat = 30
         let labelWidth: CGFloat = 300
-        let emojiSize = 60
+        let emojiSize = 60.0
         
         emojiLabel = UILabel()
         emojiLabel.font = emojiLabel.font.withSize(55)
-        emojiLabel.frame = CGRect(x:20, y: 10, width: emojiSize, height: emojiSize)
+        emojiLabel.frame = CGRect(x:10, y: 10, width: emojiSize, height: emojiSize)
         emojiLabel.text = "😏"
         contentView.addSubview(emojiLabel)
         
@@ -53,7 +53,8 @@ class JournalTableViewCell: UITableViewCell {
         contentView.addSubview(emotionLabel)
         
         seeMoreButton = UIButton()
-        seeMoreButton.frame = CGRect(x : 380-emojiSize, y : 10, width: emojiSize, height: emojiSize)
+        seeMoreButton.imageView?.contentMode = UIViewContentMode.center
+        seeMoreButton.frame = CGRect(x : 350-emojiSize, y : Double(contentView.center.y)-10, width: emojiSize, height: emojiSize)
         seeMoreButton.setImage(#imageLiteral(resourceName: "Right Arrow Icon"), for: UIControlState.normal)
         contentView.addSubview(seeMoreButton)
         

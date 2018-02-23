@@ -13,11 +13,7 @@ import Accelerate
 import Firebase
 
 class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate, FacialExpressionTrackerDelegate, SFSpeechRecognizerDelegate {
-    
-    
-    
-    
-    
+
     //MARK: Properties
     private let textClassificationService = TextClassificationService()
     
@@ -78,6 +74,31 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
             recognitionRequest?.endAudio()
             print("Stop Recording")
             sender.isSelected = false
+        }
+    }
+    
+    @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.left:
+                let transition = CATransition()
+                transition.duration = 0.5
+                transition.type = kCATransitionPush
+                transition.subtype = kCATransitionFromRight
+                transition.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseInEaseOut)
+                view.window!.layer.add(transition, forKey: kCATransition)
+                present(settingsController, animated: false, completion: nil)
+            case UISwipeGestureRecognizerDirection.right:
+                let transition = CATransition()
+                transition.duration = 0.5
+                transition.type = kCATransitionPush
+                transition.subtype = kCATransitionFromLeft
+                transition.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseInEaseOut)
+                view.window!.layer.add(transition, forKey: kCATransition)
+                present(journalController, animated: false, completion: nil)
+            default:
+                break
+            }
         }
     }
     
@@ -243,7 +264,6 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("real is happening")
         let _height = self.view.bounds.height
         let _width = self.view.bounds.width
         self.audioWaveFormView.density = 1.0
@@ -266,6 +286,13 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
         catch {
             print(error)
         }
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        self.view.addGestureRecognizer(swipeLeft)
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(swipeRight)
         func styleCaptureButton() {
             let kButtonDiameter = 100
             captureButton.frame = CGRect(x: 0, y: 0, width: kButtonDiameter, height: kButtonDiameter)
