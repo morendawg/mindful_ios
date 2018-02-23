@@ -18,8 +18,8 @@ class SettingsController : UIViewController {
         backButton.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
         backButton.center.y = (1/15)*self.view.bounds.height
         backButton.center.x = (1/10)*self.view.bounds.width
-        backButton.setImage(#imageLiteral(resourceName: "Back Icon"), for: UIControlState.normal)
-        backButton.setTitle("Back", for: .normal)
+        backButton.setImage(#imageLiteral(resourceName: "Back Arrow Icon"), for: UIControlState.normal)
+        backButton.setTitle(" Back", for: .normal)
         backButton.setTitleColor(UIColor.white, for: .normal)
         backButton.addTarget(self,  action: #selector(self.backAction(_:)), for: UIControlEvents.touchUpInside)
         self.view.addSubview(backButton)
