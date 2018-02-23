@@ -24,13 +24,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        var ref: DatabaseReference!
+        
+        ref = Database.database().reference()
+
         let auth = Auth.auth()
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
-
         
-        if auth.currentUser != nil {
+        let user = auth.currentUser
+        if user != nil {
+            let uid = user?.uid
+            let username = auth.currentUser?.email
+            ref.child("users").child(uid!).setValue(["email": username])
             let homeViewController = RecordViewController()
             window!.rootViewController = homeViewController
             

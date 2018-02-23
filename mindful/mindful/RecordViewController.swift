@@ -11,12 +11,13 @@ import VisionLab
 import Speech
 import Accelerate
 import Firebase
+import FirebaseAuth
 
 class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate, FacialExpressionTrackerDelegate, SFSpeechRecognizerDelegate {
     
+     fileprivate(set) var auth:Auth?
     
-    
-    
+    fileprivate(set) var ref: DatabaseReference!
     
     //MARK: Properties
     private let textClassificationService = TextClassificationService()
@@ -74,6 +75,25 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
             sender.isSelected = true
         } else {
             try? self.cameraController.stopRecording()
+            let user = auth?.currentUser
+            let uid = user?.uid
+            let entrykey = self.ref.child("entries").childByAutoId().key
+            //        ocation, weather, transcript, emotion, time
+            let currentDate = Date()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = DateFormatter.Style.full
+            let date = dateFormatter.string(from: currentDate)
+            let entry = ["uid": uid ?? "NOUSERID",
+                         "location":"here",
+                         "weather" : "very cold",
+                         "transcript":self.nlpInput.text,
+                         "emotion":"",
+                         "time": date] as [String : Any]
+            let childUpdates = ["/entries/\(entrykey)": entry,
+                                "/user-entries/\(uid ?? "NOUSERID")/\(entrykey)/": entry]
+            ref.updateChildValues(childUpdates)
+            
+            
             audioEngine.stop()
             recognitionRequest?.endAudio()
             print("Stop Recording")
@@ -243,7 +263,11 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("real is happening")
+        self.ref = Database.database().reference()
+        self.auth = Auth.auth()
+        
+   
+    
         let _height = self.view.bounds.height
         let _width = self.view.bounds.width
         self.audioWaveFormView.density = 1.0
