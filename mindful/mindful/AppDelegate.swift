@@ -14,24 +14,34 @@ import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
+    
+    
+    
+    
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-      
-       
-        
+        let auth = Auth.auth()
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        let loginViewController = MainViewController()
-     
-//        let homeViewController = RecordViewController()
-//        window!.rootViewController = homeViewController
-//        window!.makeKeyAndVisible()
-        window!.rootViewController = loginViewController
+
+        
+        if auth.currentUser != nil {
+            let homeViewController = RecordViewController()
+            window!.rootViewController = homeViewController
+            
+        } else {
+            let loginViewController = MainViewController()
+            window!.rootViewController = loginViewController
+        }
+        
+        
+       
+        
         window!.makeKeyAndVisible()
         return true
         
