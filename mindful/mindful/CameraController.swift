@@ -11,8 +11,11 @@ import UIKit
 import Vision
 import Photos
 import FirebaseStorage
+import FirebaseDatabase
+import FirebaseAuth
 
 class CameraController : NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureFileOutputRecordingDelegate, ClassificationServiceDelegate {
+    fileprivate(set) var auth:Auth?
     var captureSession : AVCaptureSession?
     var frontCamera : AVCaptureDevice?
     var rearCamera: AVCaptureDevice?
@@ -200,6 +203,9 @@ extension CameraController {
         return
     }
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
+
+        
+        
         let storage = Storage.storage()
         let storageRef = storage.reference()
         let videoRef = storageRef.child("videos/"+outputFileURL.lastPathComponent)

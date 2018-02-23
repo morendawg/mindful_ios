@@ -11,9 +11,18 @@ import VisionLab
 import Speech
 import Accelerate
 import Firebase
-
+import FirebaseAuth
+import FirebaseDatabase
 class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate, FacialExpressionTrackerDelegate, SFSpeechRecognizerDelegate {
+<<<<<<< HEAD
 
+=======
+    
+     fileprivate(set) var auth:Auth?
+    
+    fileprivate(set) var ref: DatabaseReference!
+    
+>>>>>>> 70c703cebd849579fa7c9fbdfc09b4da043ec976
     //MARK: Properties
     private let textClassificationService = TextClassificationService()
     
@@ -23,6 +32,7 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
     private let nlpText = UILabel()
     
     private let sentimentLabel = UILabel()
+    private var sentiment = ""
     
     private let userPrompt = UILabel()
     
@@ -70,6 +80,25 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
             sender.isSelected = true
         } else {
             try? self.cameraController.stopRecording()
+            let user = auth?.currentUser
+            let uid = user?.uid
+            let entrykey = self.ref.child("entries").childByAutoId().key
+            //        ocation, weather, transcript, emotion, time
+            let currentDate = Date()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = DateFormatter.Style.full
+            let date = dateFormatter.string(from: currentDate)
+            let entry = ["uid": uid ?? "NOUSERID",
+                         "location":"here",
+                         "weather" : "very cold",
+                         "transcript":self.nlpInput.text,
+                         "sentiment":self.sentiment,
+                         "time": date] as [String : Any]
+            let childUpdates = ["/entries/\(entrykey)": entry,
+                                "/user-entries/\(uid ?? "NOUSERID")/\(entrykey)/": entry]
+            ref.updateChildValues(childUpdates)
+            
+            
             audioEngine.stop()
             recognitionRequest?.endAudio()
             print("Stop Recording")
@@ -145,9 +174,9 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
                 self.recognitionTask = nil
                 
                 self.captureButton.isEnabled = true
-                let sentiment = self.textClassificationService.predictSentiment(from: self.nlpInput.text!)
-                self.sentimentLabel.text = "NLP Sentiment: " + sentiment
-                self.animatedGradientView?.changeSentimentGradient(sentiment: sentiment)
+                self.sentiment = self.textClassificationService.predictSentiment(from: self.nlpInput.text!)
+                self.sentimentLabel.text = "NLP Sentiment: " + self.sentiment
+                self.animatedGradientView?.changeSentimentGradient(sentiment: self.sentiment)
             }
         })
         
@@ -185,7 +214,7 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         nlpText.text = nlpInput.text
-        let sentiment = textClassificationService.predictSentiment(from: nlpInput.text!)
+        self.sentiment = textClassificationService.predictSentiment(from: nlpInput.text!)
         sentimentLabel.text = sentiment
         animatedGradientView?.changeSentimentGradient(sentiment: sentiment)
     }
@@ -264,6 +293,8 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.ref = Database.database().reference()
+        self.auth = Auth.auth()
         let _height = self.view.bounds.height
         let _width = self.view.bounds.width
         self.audioWaveFormView.density = 1.0

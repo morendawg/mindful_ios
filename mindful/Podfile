@@ -8,7 +8,7 @@ target 'mindful' do
   # Pods for mindful
   pod 'Firebase/Core'
   pod 'Firebase/Storage'
-
+  pod 'Firebase/Database'
   pod 'FirebaseUI/Auth'
  
   pod 'VisionLab', git: 'https://github.com/cocoa-ai/VisionLab'
