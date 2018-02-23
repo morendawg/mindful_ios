@@ -10,20 +10,42 @@ import Foundation
 import UIKit
 
 class SettingsController : UIViewController {
-    private let settingsLabel = UILabel()
+    private let streakLabel = UILabel()
+    private let backButton = UIButton()
+    private var animatedGradientView : AnimatedGradientView?
+    
+    func setUpButtons() {
+        backButton.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
+        backButton.center.y = (1/15)*self.view.bounds.height
+        backButton.center.x = (1/10)*self.view.bounds.width
+        backButton.setImage(#imageLiteral(resourceName: "Back Icon"), for: UIControlState.normal)
+        backButton.setTitle("Back", for: .normal)
+        backButton.setTitleColor(UIColor.white, for: .normal)
+        backButton.addTarget(self,  action: #selector(self.backAction(_:)), for: UIControlEvents.touchUpInside)
+        self.view.addSubview(backButton)
+        
+        streakLabel.frame = CGRect(x: 0, y: 0, width: 300, height: 100)
+        streakLabel.center = CGPoint(x: self.view.center.x, y: (1/5)*self.view.bounds.height + 340)
+        streakLabel.textAlignment = NSTextAlignment.center
+        streakLabel.numberOfLines = 0;
+        streakLabel.textColor =  UIColor.white
+        streakLabel.text="Usage Streak: 3"
+        self.view.addSubview(streakLabel)
+    }
+    
+    @IBAction func backAction(_ sender: UIButton) {
+        var mainAppController: RecordViewController? = nil
+        mainAppController = RecordViewController()
+        self.show(mainAppController!, sender: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        settingsLabel.frame = CGRect(x: 0, y: 0, width: 300, height: 100)
-        settingsLabel.center = CGPoint(x: self.view.center.x, y: (1/5)*self.view.bounds.height + 340)
-        settingsLabel.textAlignment = NSTextAlignment.center
-        settingsLabel.numberOfLines = 0;
-        settingsLabel.textColor =  UIColor.black
-        settingsLabel.text="Usage Streak: 3"
-        self.view.addSubview(settingsLabel)
+        animatedGradientView = AnimatedGradientView(frame: self.view.bounds)
+        self.view.addSubview(animatedGradientView!)
         
-        print("hello")
+        setUpButtons()
     }
     
     func configureSettings() throws {
