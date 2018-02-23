@@ -14,15 +14,12 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate, FacialExpressionTrackerDelegate, SFSpeechRecognizerDelegate {
-<<<<<<< HEAD
 
-=======
     
-     fileprivate(set) var auth:Auth?
+    fileprivate(set) var auth:Auth?
     
     fileprivate(set) var ref: DatabaseReference!
     
->>>>>>> 70c703cebd849579fa7c9fbdfc09b4da043ec976
     //MARK: Properties
     private let textClassificationService = TextClassificationService()
     
