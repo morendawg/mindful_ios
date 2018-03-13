@@ -13,7 +13,9 @@ import Accelerate
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
-class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate, FacialExpressionTrackerDelegate, SFSpeechRecognizerDelegate {
+import Affdex
+
+class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate, FacialExpressionTrackerDelegate, SFSpeechRecognizerDelegate, AFDXDetectorDelegate {
 
     
     fileprivate(set) var auth:Auth?
@@ -22,6 +24,10 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
     
     //MARK: Properties
     private let textClassificationService = TextClassificationService()
+    
+    //MARK: Affdex
+    
+    var detector: AFDXDetector? = nil
     
     //MARK : UI
     private let nlpInput =  UITextView()
@@ -335,7 +341,7 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
             animatedGradientView = AnimatedGradientView(frame: self.view.bounds)
             self.view.addSubview(animatedGradientView!)
         }
-        configureCameraController()
+//        configureCameraController()
         styleAnimatedGradientView()
         styleCaptureButton()
         setUpButtons()
@@ -372,7 +378,50 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
                 self.captureButton.isEnabled = isButtonEnabled
             }
         }
+        detector = AFDXDetector(delegate:self, using:AFDX_CAMERA_FRONT, maximumFaces:1)
+        // turning on a few emotions
         
+        detector?.setDetectEmojis(true)
+        detector?.setDetectAllEmotions(true)
+        detector?.setDetectAllExpressions(true)
+        detector!.start()
+    }
+    
+    func detectorDidStartDetectingFace(face : AFDXFace) {
+        // handle new face
+    }
+    
+    func detectorDidStopDetectingFace(face : AFDXFace) {
+        // handle loss of existing face
+    }
+    
+    func detector(_ detector : AFDXDetector, hasResults : NSMutableDictionary?, for forImage : UIImage, atTime : TimeInterval) {
+        // handle processed and unprocessed images here
+        if hasResults != nil {
+            // handle processed image in this block of code
+            
+            // enumrate the dictionary of faces
+            for (_, face) in hasResults! {
+                // for each face, get the rage score and print it
+                let emotions : AFDXEmotions = (face as AnyObject).emotions
+                let scores = ["anger": emotions.anger,
+                              "contempt": emotions.contempt,
+                              "disgust": emotions.disgust,
+                              "fear": emotions.fear,
+                              "joy": emotions.joy,
+                              "sadness": emotions.sadness,
+                              "surprise": emotions.surprise
+                ]
+                let exp = scores.max{a,b in a.value < b.value}
+                if (Float((exp?.value)!) > 60.0) {
+                    changeFacialExpressionLabel(emotion: exp?.key)
+                } else {
+                    changeFacialExpressionLabel(emotion: "neutral")
+                }
+            }
+        } else {
+            // handle unprocessed image in this block of code
+        }
     }
     
     @objc func doubleTapped(){
