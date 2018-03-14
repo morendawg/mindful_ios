@@ -77,16 +77,16 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
 
     @objc func toggleRecording(_ sender: UIButton) {
         if (!sender.isSelected) {
-            try? self.cameraController.beginRecording()
+//            try? self.cameraController.beginRecording()
             handleSpeech()
             print("Start Recording")
             sender.isSelected = true
         } else {
-            try? self.cameraController.stopRecording()
+//            try? self.cameraController.stopRecording()
             let user = auth?.currentUser
             let uid = user?.uid
             let entrykey = self.ref.child("entries").childByAutoId().key
-            //        ocation, weather, transcript, emotion, time
+            //  location, weather, transcript, emotion, time
             let currentDate = Date()
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = DateFormatter.Style.full
@@ -349,9 +349,9 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
         setUpNLPLabels()
         setUpFaceExLabel()
         self.cameraController.customDelegate = self
-        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
-        tap.numberOfTapsRequired = 2
-        view.addGestureRecognizer(tap)
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
+//        tap.numberOfTapsRequired = 2
+//        view.addGestureRecognizer(tap)
         speechRecognizer.delegate = self;
         SFSpeechRecognizer.requestAuthorization { (authStatus) in
             
