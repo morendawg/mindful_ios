@@ -43,7 +43,7 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
     
     private let settingsButton = UIButton()
 
-    let cameraController = CameraController()
+//    let cameraController = CameraController()
     let settingsController = SettingsController()
     let journalController = JournalViewController()
     
@@ -114,7 +114,7 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
             switch swipeGesture.direction {
             case UISwipeGestureRecognizerDirection.left:
                 let transition = CATransition()
-                transition.duration = 0.5
+                transition.duration = 0.3
                 transition.type = kCATransitionPush
                 transition.subtype = kCATransitionFromRight
                 transition.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseInEaseOut)
@@ -122,7 +122,7 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
                 present(settingsController, animated: false, completion: nil)
             case UISwipeGestureRecognizerDirection.right:
                 let transition = CATransition()
-                transition.duration = 0.5
+                transition.duration = 0.3
                 transition.type = kCATransitionPush
                 transition.subtype = kCATransitionFromLeft
                 transition.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseInEaseOut)
@@ -281,11 +281,24 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
     }
     
     @objc func settingsFunction(_ sender: UIButton) {
-        self.present(settingsController, animated: true, completion: nil)
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromRight
+        transition.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseInEaseOut)
+        view.window!.layer.add(transition, forKey: kCATransition)
+        present(settingsController, animated: false, completion: nil)
+
     }
     
     @objc func openJournal(_ sender: UIButton) {
-        self.present(journalController, animated: true, completion: nil)
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromLeft
+        transition.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseInEaseOut)
+        view.window!.layer.add(transition, forKey: kCATransition)
+        present(journalController, animated: false, completion: nil)
     }
     
     func setUpAudioWaveFormView() {
@@ -303,23 +316,23 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
         self.audioWaveFormView.density = 1.0
         timer = Timer.scheduledTimer(timeInterval: 0.009, target: self, selector: #selector(RecordViewController.refreshAudioView(_:)), userInfo: nil, repeats: true)
         timer = Timer.scheduledTimer(timeInterval: 0.1 , target: self, selector: #selector(updateMeter), userInfo: nil, repeats: true)
-        func configureCameraController() {
-            capturePreviewView.frame = self.view.bounds
-            self.view.addSubview(capturePreviewView)
-            cameraController.prepare {(error) in
-                if let error = error {
-                    print(error)
-                }
-                
-                try? self.cameraController.displayPreview(on: self.capturePreviewView)
-            }
-        }
-        do {
-            try self.cameraController.switchCameras()
-        }
-        catch {
-            print(error)
-        }
+//        func configureCameraController() {
+//            capturePreviewView.frame = self.view.bounds
+//            self.view.addSubview(capturePreviewView)
+//            cameraController.prepare {(error) in
+//                if let error = error {
+//                    print(error)
+//                }
+//
+//                try? self.cameraController.displayPreview(on: self.capturePreviewView)
+//            }
+//        }
+//        do {
+//            try self.cameraController.switchCameras()
+//        }
+//        catch {
+//            print(error)
+//        }
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
         swipeLeft.direction = UISwipeGestureRecognizerDirection.left
         self.view.addGestureRecognizer(swipeLeft)
@@ -348,7 +361,7 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
         setUpAudioWaveFormView()
         setUpNLPLabels()
         setUpFaceExLabel()
-        self.cameraController.customDelegate = self
+//        self.cameraController.customDelegate = self
 //        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
 //        tap.numberOfTapsRequired = 2
 //        view.addGestureRecognizer(tap)
