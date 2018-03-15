@@ -7,11 +7,14 @@
 //
 
 import Foundation
+import Firebase
 import UIKit
 
 class SettingsController : UIViewController {
     private let streakLabel = UILabel()
     private let backButton = UIButton()
+    private let logoutButton = UIButton()
+
     private var animatedGradientView : AnimatedGradientView?
     
     func setUpButtons() {
@@ -23,6 +26,14 @@ class SettingsController : UIViewController {
         backButton.setTitleColor(UIColor.white, for: .normal)
         backButton.addTarget(self,  action: #selector(self.backAction(_:)), for: UIControlEvents.touchUpInside)
         self.view.addSubview(backButton)
+        
+        logoutButton.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
+        logoutButton.center.y = (1/15)*self.view.bounds.height
+        logoutButton.center.x = (9/10)*self.view.bounds.width
+        logoutButton.setTitle("Logout", for: .normal)
+        logoutButton.setTitleColor(UIColor.white, for: .normal)
+        logoutButton.addTarget(self,  action: #selector(self.logoutAction(_:)), for: UIControlEvents.touchUpInside)
+        self.view.addSubview(logoutButton)
         
         streakLabel.frame = CGRect(x: 0, y: 0, width: 300, height: 100)
         streakLabel.center = CGPoint(x: self.view.center.x, y: (1/5)*self.view.bounds.height + 340)
@@ -37,6 +48,19 @@ class SettingsController : UIViewController {
         var mainAppController: RecordViewController? = nil
         mainAppController = RecordViewController()
         self.show(mainAppController!, sender: nil)
+    }
+    
+    @IBAction func logoutAction(_ sender: UIButton) {
+        let firebaseAuth = Auth.auth()
+        do {
+            print ("Error: clicked signed out")
+            try firebaseAuth.signOut()
+            var mainViewController: MainViewController? = nil
+            mainViewController = MainViewController()
+            self.show(mainViewController!, sender: nil)
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
     }
     
     override func viewDidLoad() {
