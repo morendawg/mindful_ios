@@ -42,12 +42,28 @@ class SettingsController : UIViewController {
         streakLabel.textColor =  UIColor.white
         streakLabel.text="Usage Streak: 3"
         self.view.addSubview(streakLabel)
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(swipeRight)
+        
     }
     
-    @IBAction func backAction(_ sender: UIButton) {
-        var mainAppController: RecordViewController? = nil
-        mainAppController = RecordViewController()
-        self.show(mainAppController!, sender: nil)
+    @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.right:
+                let transition = CATransition()
+                transition.duration = 0.3
+                transition.type = kCATransitionPush
+                transition.subtype = kCATransitionFromLeft
+                transition.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseInEaseOut)
+                view.window!.layer.add(transition, forKey: kCATransition)
+                present(RecordViewController(), animated: false, completion: nil)
+                print("right swipe")
+            default:
+                break
+            }
+        }
     }
     
     @IBAction func logoutAction(_ sender: UIButton) {
