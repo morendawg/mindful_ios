@@ -13,7 +13,9 @@ import Accelerate
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
-class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate, FacialExpressionTrackerDelegate, SFSpeechRecognizerDelegate {
+import Affdex
+
+class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate, FacialExpressionTrackerDelegate, SFSpeechRecognizerDelegate, AFDXDetectorDelegate {
 
     
     fileprivate(set) var auth:Auth?
@@ -22,6 +24,10 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
     
     //MARK: Properties
     private let textClassificationService = TextClassificationService()
+    
+    //MARK: Affdex
+    
+    var detector: AFDXDetector? = nil
     
     //MARK : UI
     private let nlpInput =  UITextView()
@@ -37,7 +43,7 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
     
     private let settingsButton = UIButton()
 
-    let cameraController = CameraController()
+//    let cameraController = CameraController()
     let settingsController = SettingsController()
     let journalController = JournalViewController()
     
@@ -71,16 +77,16 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
 
     @objc func toggleRecording(_ sender: UIButton) {
         if (!sender.isSelected) {
-            try? self.cameraController.beginRecording()
+//            try? self.cameraController.beginRecording()
             handleSpeech()
             print("Start Recording")
             sender.isSelected = true
         } else {
-            try? self.cameraController.stopRecording()
+//            try? self.cameraController.stopRecording()
             let user = auth?.currentUser
             let uid = user?.uid
             let entrykey = self.ref.child("entries").childByAutoId().key
-            //        ocation, weather, transcript, emotion, time
+            //  location, weather, transcript, emotion, time
             let currentDate = Date()
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = DateFormatter.Style.full
@@ -109,7 +115,7 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
             switch swipeGesture.direction {
             case UISwipeGestureRecognizerDirection.left:
                 let transition = CATransition()
-                transition.duration = 0.5
+                transition.duration = 0.3
                 transition.type = kCATransitionPush
                 transition.subtype = kCATransitionFromRight
                 transition.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseInEaseOut)
@@ -117,7 +123,7 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
                 present(settingsController, animated: false, completion: nil)
             case UISwipeGestureRecognizerDirection.right:
                 let transition = CATransition()
-                transition.duration = 0.5
+                transition.duration = 0.3
                 transition.type = kCATransitionPush
                 transition.subtype = kCATransitionFromLeft
                 transition.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseInEaseOut)
@@ -276,11 +282,24 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
     }
     
     @objc func settingsFunction(_ sender: UIButton) {
-        self.present(settingsController, animated: true, completion: nil)
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromRight
+        transition.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseInEaseOut)
+        view.window!.layer.add(transition, forKey: kCATransition)
+        present(settingsController, animated: false, completion: nil)
+
     }
     
     @objc func openJournal(_ sender: UIButton) {
-        self.present(journalController, animated: true, completion: nil)
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromLeft
+        transition.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseInEaseOut)
+        view.window!.layer.add(transition, forKey: kCATransition)
+        present(journalController, animated: false, completion: nil)
     }
     
     func setUpAudioWaveFormView() {
@@ -298,23 +317,23 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
         self.audioWaveFormView.density = 1.0
         timer = Timer.scheduledTimer(timeInterval: 0.009, target: self, selector: #selector(RecordViewController.refreshAudioView(_:)), userInfo: nil, repeats: true)
         timer = Timer.scheduledTimer(timeInterval: 0.1 , target: self, selector: #selector(updateMeter), userInfo: nil, repeats: true)
-        func configureCameraController() {
-            capturePreviewView.frame = self.view.bounds
-            self.view.addSubview(capturePreviewView)
-            cameraController.prepare {(error) in
-                if let error = error {
-                    print(error)
-                }
-                
-                try? self.cameraController.displayPreview(on: self.capturePreviewView)
-            }
-        }
-        do {
-            try self.cameraController.switchCameras()
-        }
-        catch {
-            print(error)
-        }
+//        func configureCameraController() {
+//            capturePreviewView.frame = self.view.bounds
+//            self.view.addSubview(capturePreviewView)
+//            cameraController.prepare {(error) in
+//                if let error = error {
+//                    print(error)
+//                }
+//
+//                try? self.cameraController.displayPreview(on: self.capturePreviewView)
+//            }
+//        }
+//        do {
+//            try self.cameraController.switchCameras()
+//        }
+//        catch {
+//            print(error)
+//        }
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
         swipeLeft.direction = UISwipeGestureRecognizerDirection.left
         self.view.addGestureRecognizer(swipeLeft)
@@ -336,17 +355,17 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
             animatedGradientView = AnimatedGradientView(frame: self.view.bounds)
             self.view.addSubview(animatedGradientView!)
         }
-        configureCameraController()
+//        configureCameraController()
         styleAnimatedGradientView()
         styleCaptureButton()
         setUpButtons()
         setUpAudioWaveFormView()
         setUpNLPLabels()
         setUpFaceExLabel()
-        self.cameraController.customDelegate = self
-        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
-        tap.numberOfTapsRequired = 2
-        view.addGestureRecognizer(tap)
+//        self.cameraController.customDelegate = self
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
+//        tap.numberOfTapsRequired = 2
+//        view.addGestureRecognizer(tap)
         speechRecognizer.delegate = self;
         SFSpeechRecognizer.requestAuthorization { (authStatus) in
             
@@ -373,7 +392,50 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
                 self.captureButton.isEnabled = isButtonEnabled
             }
         }
+        detector = AFDXDetector(delegate:self, using:AFDX_CAMERA_FRONT, maximumFaces:1)
+        // turning on a few emotions
         
+        detector?.setDetectEmojis(true)
+        detector?.setDetectAllEmotions(true)
+        detector?.setDetectAllExpressions(true)
+        detector!.start()
+    }
+    
+    func detectorDidStartDetectingFace(face : AFDXFace) {
+        // handle new face
+    }
+    
+    func detectorDidStopDetectingFace(face : AFDXFace) {
+        // handle loss of existing face
+    }
+    
+    func detector(_ detector : AFDXDetector, hasResults : NSMutableDictionary?, for forImage : UIImage, atTime : TimeInterval) {
+        // handle processed and unprocessed images here
+        if hasResults != nil {
+            // handle processed image in this block of code
+            
+            // enumrate the dictionary of faces
+            for (_, face) in hasResults! {
+                // for each face, get the rage score and print it
+                let emotions : AFDXEmotions = (face as AnyObject).emotions
+                let scores = ["anger": emotions.anger,
+                              "contempt": emotions.contempt,
+                              "disgust": emotions.disgust,
+                              "fear": emotions.fear,
+                              "joy": emotions.joy,
+                              "sadness": emotions.sadness,
+                              "surprise": emotions.surprise
+                ]
+                let exp = scores.max{a,b in a.value < b.value}
+                if (Float((exp?.value)!) > 60.0) {
+                    changeFacialExpressionLabel(emotion: exp?.key)
+                } else {
+                    changeFacialExpressionLabel(emotion: "neutral")
+                }
+            }
+        } else {
+            // handle unprocessed image in this block of code
+        }
     }
     
     @objc func doubleTapped(){

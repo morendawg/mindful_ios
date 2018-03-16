@@ -78,7 +78,7 @@ class JournalViewController: UIViewController, UITableViewDataSource, UITableVie
             switch swipeGesture.direction {
             case UISwipeGestureRecognizerDirection.left:
                 let transition = CATransition()
-                transition.duration = 0.5
+                transition.duration = 0.3
                 transition.type = kCATransitionPush
                 transition.subtype = kCATransitionFromRight
                 transition.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseInEaseOut)

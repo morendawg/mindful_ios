@@ -1,6 +1,21 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
+## AWSCore
+
+The AWS Mobile SDK for iOS is generally licensed under the Apache 2.0 License, with the Amazon Cognito Identity Provider and Amazon Cognito Sync subcomponents being licensed under the Amazon Software License and the AWSLex/Bluefront folder under the AWS Customer Agreement (https://aws.amazon.com/agreement/ ). 
+
+
+## AWSKinesis
+
+The AWS Mobile SDK for iOS is generally licensed under the Apache 2.0 License, with the Amazon Cognito Identity Provider and Amazon Cognito Sync subcomponents being licensed under the Amazon Software License and the AWSLex/Bluefront folder under the AWS Customer Agreement (https://aws.amazon.com/agreement/ ). 
+
+
+## AffdexSDK-iOS
+
+#### Copyright (c) 2017 Affectiva Inc.<br/>See our [SDK License Agreement](http://developer.affectiva.com/sdklicense) for copying permission.
+
+
 ## Firebase
 
 Copyright 2018 Google
