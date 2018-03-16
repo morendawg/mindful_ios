@@ -89,6 +89,7 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
                          "location":"here",
                          "weather" : "very cold",
                          "transcript":self.nlpInput.text,
+                         "emoji":"😴",
                          "sentiment":self.sentiment,
                          "time": date] as [String : Any]
             let childUpdates = ["/entries/\(entrykey)": entry,

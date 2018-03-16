@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
 class JournalViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    fileprivate(set) var auth:Auth?
+    
+    fileprivate(set) var ref: DatabaseReference!
     
     var dateArray = [".", "February 8, 2018", "February 14, 2018", "February 20, 2018", "February 22, 2018", "February 8, 2018", "February 14, 2018", "February 20, 2018", "February 22, 2018"]
     var emojiArray = [".", "😴", "😔", "😏", "😡", "😴", "😔", "😏", "😡"]
@@ -19,28 +24,52 @@ class JournalViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.ref = Database.database().reference()
+        self.auth = Auth.auth()
+        let user = auth?.currentUser
+        let uid = user?.uid
+        
+        ref?.child("/user-entries/\(uid ?? "NOUSERID")/").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            // Get user value
+            let entries = snapshot.value as? NSDictionary
+            for (_, entry) in entries! {
+                
+                let lol = (entry as! NSDictionary)
+                self.dateArray.append( lol.value(forKey: "time") as! String)
+                self.emotionsArray.append(lol.value(forKey: "emotion") as! String)
+                self.emojiArray.append(lol.value(forKey: "emoji") as! String)
+            }
+        
+            print(self.dateArray)
+            print(self.emotionsArray)
+            self.animatedGradientView = AnimatedGradientView(frame: self.view.bounds)
+            self.view.addSubview(self.animatedGradientView!)
+            
+            var tableRect = self.view.frame
+            
+            tableRect.origin.x += 15
+            tableRect.size.width -= 30
+            
+            let tableView = UITableView(frame: tableRect, style: UITableViewStyle.grouped)
+            tableView.delegate = self
+            tableView.dataSource = self
+            tableView.backgroundColor = UIColor.clear
+            tableView.showsHorizontalScrollIndicator = false
+            tableView.showsVerticalScrollIndicator = false
+            self.view.addSubview(tableView)
+            
+            let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+            swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+            self.view.addGestureRecognizer(swipeLeft)
+            
+        })
+        
+        
         
        
         
-        animatedGradientView = AnimatedGradientView(frame: self.view.bounds)
-        self.view.addSubview(animatedGradientView!)
         
-        var tableRect = self.view.frame
-        
-        tableRect.origin.x += 15
-        tableRect.size.width -= 30
-        
-        let tableView = UITableView(frame: tableRect, style: UITableViewStyle.grouped)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.backgroundColor = UIColor.clear
-        tableView.showsHorizontalScrollIndicator = false
-        tableView.showsVerticalScrollIndicator = false
-        view.addSubview(tableView)
-        
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
-        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
-        self.view.addGestureRecognizer(swipeLeft)
         
     }
     
