@@ -15,10 +15,22 @@ class JournalViewController: UIViewController, UITableViewDataSource, UITableVie
     
     fileprivate(set) var ref: DatabaseReference!
     
-    var dateArray = [".", "February 8, 2018", "February 14, 2018", "February 20, 2018", "February 22, 2018", "February 8, 2018", "February 14, 2018", "February 20, 2018", "February 22, 2018"]
-    var emojiArray = [".", "😴", "😔", "😏", "😡", "😴", "😔", "😏", "😡"]
-    var emotionsArray = [".","sleepy, sad", "sad, mellow", "cheeky, happy", "angry, meh", "sleepy, sad", "sad, mellow", "cheeky, happy", "angry, meh"]
+//    var dateArray = [".", "February 8, 2018", "February 14, 2018", "February 20, 2018", "February 22, 2018", "February 8, 2018", "February 14, 2018", "February 20, 2018", "February 22, 2018"]
+//    var emojiArray = [".", "😴", "😔", "😏", "😡", "😴", "😔", "😏", "😡"]
+//    var emotionsArray = [".","sleepy, sad", "sad, mellow", "cheeky, happy", "angry, meh", "sleepy, sad", "sad, mellow", "cheeky, happy", "angry, meh"]
     
+    //
+    
+    var emojiMap = ["anger": "😡",
+                    "contempt": "🙄",
+                    "disgust": "🤢",
+                    "fear": "😨",
+                    "joy": "😃",
+                    "sadness": "😔",
+                    "surprise": "😮"]
+    var dateArray =  [String]()
+    var emojiArray = [String]()
+    var emotionsArray = [String]()
     private var animatedGradientView : AnimatedGradientView?
     let cellSpacingHeight: CGFloat = 0.000001
     

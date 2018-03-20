@@ -35,13 +35,20 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
     private let nlpText = UILabel()
     
     private let sentimentLabel = UILabel()
-    private var sentiment = ""
+    private var emotion = ""
     
     private let userPrompt = UILabel()
     
     private let journalButton = UIButton()
     
     private let settingsButton = UIButton()
+    var emojiMap = ["anger": "😡",
+                    "contempt": "🙄",
+                    "disgust": "🤢",
+                    "fear": "😨",
+                    "joy": "😃",
+                    "sadness": "😔",
+                    "surprise": "😮"]
 
 //    let cameraController = CameraController()
     let settingsController = SettingsController()
@@ -95,8 +102,8 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
                          "location":"here",
                          "weather" : "very cold",
                          "transcript":self.nlpInput.text,
-                         "emoji":"😴",
-                         "sentiment":self.sentiment,
+                         "emotion":self.emotion,
+                         "emoji":self.emojiMap[self.emotion] ?? "joy",
                          "time": date] as [String : Any]
             let childUpdates = ["/entries/\(entrykey)": entry,
                                 "/user-entries/\(uid ?? "NOUSERID")/\(entrykey)/": entry]
@@ -178,9 +185,9 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
                 self.recognitionTask = nil
                 
                 self.captureButton.isEnabled = true
-                self.sentiment = self.textClassificationService.predictSentiment(from: self.nlpInput.text!)
-                self.sentimentLabel.text = "NLP Sentiment: " + self.sentiment
-                self.animatedGradientView?.changeSentimentGradient(sentiment: self.sentiment)
+                self.emotion = self.textClassificationService.predictSentiment(from: self.nlpInput.text!)
+                self.sentimentLabel.text = "NLP Sentiment: " + self.emotion
+                self.animatedGradientView?.changeSentimentGradient(sentiment: self.emotion)
             }
         })
         
@@ -218,9 +225,9 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         nlpText.text = nlpInput.text
-        self.sentiment = textClassificationService.predictSentiment(from: nlpInput.text!)
-        sentimentLabel.text = sentiment
-        animatedGradientView?.changeSentimentGradient(sentiment: sentiment)
+        self.emotion = textClassificationService.predictSentiment(from: nlpInput.text!)
+        sentimentLabel.text = self.emotion
+        animatedGradientView?.changeSentimentGradient(sentiment: emotion)
     }
     
     func setUpNLPLabels() {
@@ -428,8 +435,10 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
                 ]
                 let exp = scores.max{a,b in a.value < b.value}
                 if (Float((exp?.value)!) > 60.0) {
+                    self.emotion = (exp?.key)!
                     changeFacialExpressionLabel(emotion: exp?.key)
                 } else {
+                    self.emotion = "joy"
                     changeFacialExpressionLabel(emotion: "neutral")
                 }
             }
