@@ -228,6 +228,8 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
         nlpInput.center = CGPoint(x: self.view.center.x, y: (1/5)*self.view.bounds.height + 90)
         nlpInput.backgroundColor = UIColor.clear
         nlpInput.textColor = UIColor.white
+        nlpInput.isEditable = false;
+        nlpInput.isSelectable = false;
         self.view.addSubview(nlpInput)
         
         sentimentLabel.frame = CGRect(x: 0, y: 0, width: 200, height: 21)
