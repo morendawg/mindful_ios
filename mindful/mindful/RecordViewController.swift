@@ -71,7 +71,7 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
     private let audioEngine = AVAudioEngine()
     private var volumeFloat:Float = 0.0
     
-    var promptArray = ["How are you today?", "What was the best part of your day?", "What was the worst part of your day?", "What are you gonna do tomorrow that you didn't do today?"]
+    var promptArray = ["What was the best part of your day?", "What was the worst part of your day?", "What are you gonna do tomorrow that you didn't do today?"]
     var promptIndex = 0;
     
     override var prefersStatusBarHidden: Bool { return true }
@@ -236,6 +236,8 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
         nlpInput.center = CGPoint(x: self.view.center.x, y: (1/5)*self.view.bounds.height + 90)
         nlpInput.backgroundColor = UIColor.clear
         nlpInput.textColor = UIColor.white
+        nlpInput.isEditable = false;
+        nlpInput.isSelectable = false;
         self.view.addSubview(nlpInput)
         
         sentimentLabel.frame = CGRect(x: 0, y: 0, width: 200, height: 21)
@@ -249,7 +251,7 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
         userPrompt.center = CGPoint(x: self.view.center.x, y: (1/5)*self.view.bounds.height + 340)
         userPrompt.textAlignment = NSTextAlignment.center
         userPrompt.numberOfLines = 0;
-        userPrompt.text = "Click for next prompt..."
+        userPrompt.text = "How are you today?"
         userPrompt.textColor =  UIColor.white
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
         userPrompt.isUserInteractionEnabled = true
