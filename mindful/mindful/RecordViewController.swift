@@ -83,21 +83,58 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
     //MARK: Actions
 
     @objc func toggleRecording(_ sender: UIButton) {
+
         if (!sender.isSelected) {
 //            try? self.cameraController.beginRecording()
             handleSpeech()
             print("Start Recording")
             sender.isSelected = true
         } else {
-//            try? self.cameraController.stopRecording()
             let user = auth?.currentUser
             let uid = user?.uid
-            let entrykey = self.ref.child("entries").childByAutoId().key
-            //  location, weather, transcript, emotion, time
             let currentDate = Date()
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = DateFormatter.Style.full
-            let date = dateFormatter.string(from: currentDate)
+            let date = dateFormatter.string(from: currentDate) //today's date
+            
+            let userID = Auth.auth().currentUser?.uid
+            ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                // Query last entry date
+                let value = snapshot.value as? NSDictionary
+                let lastEntry = value?["lastEntry"] as? String ?? "Friday, January 1, 1990"
+                let lastDateObj = dateFormatter.date(from: lastEntry)
+                let email = value?["email"] as? String ?? "no email"
+                
+                // Query streak count
+                let streak = value?["streak"] as? Int ?? 0
+                
+                // calculate time between date and last entry
+                let streakGap = self.calculateDaysBetweenTwoDates(start: lastDateObj!, end: currentDate)
+                
+                // check if user broke streak
+                if (streakGap > 2) {
+                    // reset streak
+                    let streak = 0
+                    let userDataEntry = ["email": email,
+                                         "streak": streak,
+                                         "lastEntry": date] as [String : Any]
+                    self.ref.child("users").child(userID!).setValue(userDataEntry)
+                } else if (date != lastEntry) {
+                    // update streak
+                    let streak = streak + 1
+                    let userDataEntry = ["email": email,
+                                         "streak": streak,
+                                         "lastEntry": date] as [String : Any]
+                    self.ref.child("users").child(userID!).setValue(userDataEntry)
+                }
+            }) { (error) in
+                print(error.localizedDescription)
+            }
+
+//            try? self.cameraController.stopRecording()
+            let entrykey = self.ref.child("entries").childByAutoId().key
+            //  location, weather, transcript, emotion, time
             let entry = ["uid": uid ?? "NOUSERID",
                          "location":"here",
                          "weather" : "very cold",
@@ -115,6 +152,18 @@ class RecordViewController: UIViewController, UITextViewDelegate, UITextFieldDel
             print("Stop Recording")
             sender.isSelected = false
         }
+    }
+    
+    private func calculateDaysBetweenTwoDates(start: Date, end: Date) -> Int {
+        
+        let currentCalendar = Calendar.current
+        guard let start = currentCalendar.ordinality(of: .day, in: .era, for: start) else {
+            return 0
+        }
+        guard let end = currentCalendar.ordinality(of: .day, in: .era, for: end) else {
+            return 0
+        }
+        return end - start
     }
     
     @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {

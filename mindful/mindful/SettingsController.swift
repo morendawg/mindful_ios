@@ -9,10 +9,15 @@
 import Foundation
 import Firebase
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
 class SettingsController : UIViewController {
     private let streakLabel = UILabel()
     private let logoutButton = UIButton()
+    
+    fileprivate(set) var auth:Auth?
+    fileprivate(set) var ref: DatabaseReference!
 
     private var animatedGradientView : AnimatedGradientView?
     
@@ -31,8 +36,21 @@ class SettingsController : UIViewController {
         streakLabel.textAlignment = NSTextAlignment.center
         streakLabel.numberOfLines = 0;
         streakLabel.textColor =  UIColor.white
-        streakLabel.text="Usage Streak: 3"
+        streakLabel.text="Usage Streak: "
+        
+        let userID = Auth.auth().currentUser?.uid
+        ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Query last entry date
+            let value = snapshot.value as? NSDictionary
+            let streak = value?["streak"] as? Int ?? 0
+            
+            self.streakLabel.text = "Usage Streak: " + "\(streak)"
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        
         self.view.addSubview(streakLabel)
+        
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
         self.view.addGestureRecognizer(swipeRight)
@@ -72,6 +90,9 @@ class SettingsController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.ref = Database.database().reference()
+        self.auth = Auth.auth()
         
         animatedGradientView = AnimatedGradientView(frame: self.view.bounds)
         self.view.addSubview(animatedGradientView!)

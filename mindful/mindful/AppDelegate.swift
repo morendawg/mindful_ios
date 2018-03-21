@@ -37,7 +37,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if user != nil {
             let uid = user?.uid
             let username = auth.currentUser?.email
-            ref.child("users").child(uid!).setValue(["email": username])
+            //ref.child("users").child(uid!).setValue(["email": username])
+            
+            ref.child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+                let value = snapshot.value as? NSDictionary
+                let streak = value?["streak"] as? Int ?? 0
+                let lastEntry = value?["lastEntry"] as? String ?? "Friday, January 1, 1990"
+                
+                let userDataEntry = ["email": username ?? "no email",
+                                     "streak": streak,
+                                     "lastEntry": lastEntry] as [String : Any]
+                ref.child("users").child(uid!).setValue(userDataEntry)
+            }) { (error) in
+                print(error.localizedDescription)
+            }
+           
             let homeViewController = RecordViewController()
             window!.rootViewController = homeViewController
             
