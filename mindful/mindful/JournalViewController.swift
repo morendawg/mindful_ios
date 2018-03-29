@@ -43,11 +43,8 @@ class JournalViewController: UIViewController, UITableViewDataSource, UITableVie
         
         ref?.child("/user-entries/\(uid ?? "NOUSERID")/").observeSingleEvent(of: .value, with: { (snapshot) in
             
-            // Get user value
-            let entries = snapshot.value as? NSDictionary
-            for (_, entry) in entries! {
-                
-                let lol = (entry as! NSDictionary)
+            for rest in snapshot.children.allObjects as! [DataSnapshot] {
+                let lol = (rest.value as! NSDictionary)
                 self.dateArray.append( lol.value(forKey: "time") as! String)
                 self.emotionsArray.append(lol.value(forKey: "emotion") as! String)
                 self.emojiArray.append(lol.value(forKey: "emoji") as! String)
