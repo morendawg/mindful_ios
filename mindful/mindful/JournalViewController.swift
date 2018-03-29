@@ -18,9 +18,7 @@ class JournalViewController: UIViewController, UITableViewDataSource, UITableVie
 //    var dateArray = [".", "February 8, 2018", "February 14, 2018", "February 20, 2018", "February 22, 2018", "February 8, 2018", "February 14, 2018", "February 20, 2018", "February 22, 2018"]
 //    var emojiArray = [".", "😴", "😔", "😏", "😡", "😴", "😔", "😏", "😡"]
 //    var emotionsArray = [".","sleepy, sad", "sad, mellow", "cheeky, happy", "angry, meh", "sleepy, sad", "sad, mellow", "cheeky, happy", "angry, meh"]
-    
-    //
-    
+
     var emojiMap = ["anger": "😡",
                     "contempt": "🙄",
                     "disgust": "🤢",
@@ -73,13 +71,6 @@ class JournalViewController: UIViewController, UITableViewDataSource, UITableVie
             self.view.addGestureRecognizer(swipeLeft)
             
         })
-        
-        
-        
-       
-        
-        
-        
     }
     
     @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
