@@ -26,9 +26,9 @@ class JournalViewController: UIViewController, UITableViewDataSource, UITableVie
                     "joy": "😃",
                     "sadness": "😔",
                     "surprise": "😮"]
-    var dateArray =  [String]()
-    var emojiArray = [String]()
-    var emotionsArray = [String]()
+    var dateArray =  [""]
+    var emojiArray = [""]
+    var emotionsArray = [""]
     private var animatedGradientView : AnimatedGradientView?
     let cellSpacingHeight: CGFloat = 0.000001
     
