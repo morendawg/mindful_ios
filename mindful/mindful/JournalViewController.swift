@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
-
+import Charts
 class JournalViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     fileprivate(set) var auth:Auth?
     
@@ -31,11 +31,17 @@ class JournalViewController: UIViewController, UITableViewDataSource, UITableVie
     var dateArray =  [String]()
     var emojiArray = [String]()
     var emotionsArray = [String]()
+    
+    var lineChart: LineChartView!
+    
+
     private var animatedGradientView : AnimatedGradientView?
     let cellSpacingHeight: CGFloat = 0.000001
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       
         self.ref = Database.database().reference()
         self.auth = Auth.auth()
         let user = auth?.currentUser
@@ -69,6 +75,7 @@ class JournalViewController: UIViewController, UITableViewDataSource, UITableVie
             tableView.backgroundColor = UIColor.clear
             tableView.showsHorizontalScrollIndicator = false
             tableView.showsVerticalScrollIndicator = false
+            tableView.register(UITableViewCell.self, forCellReuseIdentifier: "journalEntryTableViewCell")
             self.view.addSubview(tableView)
             
             let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
@@ -133,13 +140,25 @@ class JournalViewController: UIViewController, UITableViewDataSource, UITableVie
         return cellSpacingHeight
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 0) {
-            let cell = GraphTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "graphTableViewCell")
-            cell.backgroundColor = UIColor(white: 1, alpha: 0.5)
-            cell.layer.cornerRadius = 8
+      
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "journalEntryTableViewCell", for: indexPath)
+            lineChart = {
+                let p = LineChartView(frame: cell.bounds)
+                return p
+            }()
+            LineChartUpdate()
+            cell.contentView.addSubview(lineChart)
             cell.clipsToBounds = true
             return cell
+            
+            
+
+            
+
         } else {
             let cell = JournalTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "journalEntryTableViewCell")
             cell.backgroundColor = UIColor(white: 1, alpha: 0.5)
@@ -150,6 +169,22 @@ class JournalViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.emotionLabel.text = emotionsArray[indexPath.section]
             return cell
         }
+    }
+    func LineChartUpdate () {
+        var lineChartEntry = [ChartDataEntry]()
+        lineChartEntry.append(ChartDataEntry(x:1.0, y:3.0))
+        lineChartEntry.append(ChartDataEntry(x:2.0, y:6.0))
+        lineChartEntry.append(ChartDataEntry(x:3.0, y:7.0))
+
+        let line1 = LineChartDataSet(values:lineChartEntry, label:"Mood")
+        let data = LineChartData()
+        print(lineChartEntry)
+        data.addDataSet(line1)
+        print(lineChart)
+        lineChart.data = data
+        lineChart.chartDescription?.text = "My awesome chart"
+        
+        lineChart.notifyDataSetChanged()
     }
     
 }

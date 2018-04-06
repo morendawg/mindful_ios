@@ -16,5 +16,8 @@ target 'mindful' do
  
   pod 'VisionLab', git: 'https://github.com/cocoa-ai/VisionLab'
   pod 'AffdexSDK-iOS'
-
+  
+  pod 'Charts'  
+  
 end
+
