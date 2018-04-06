@@ -18,9 +18,7 @@ class JournalViewController: UIViewController, UITableViewDataSource, UITableVie
 //    var dateArray = [".", "February 8, 2018", "February 14, 2018", "February 20, 2018", "February 22, 2018", "February 8, 2018", "February 14, 2018", "February 20, 2018", "February 22, 2018"]
 //    var emojiArray = [".", "😴", "😔", "😏", "😡", "😴", "😔", "😏", "😡"]
 //    var emotionsArray = [".","sleepy, sad", "sad, mellow", "cheeky, happy", "angry, meh", "sleepy, sad", "sad, mellow", "cheeky, happy", "angry, meh"]
-    
-    //
-    
+
     var emojiMap = ["anger": "😡",
                     "contempt": "🙄",
                     "disgust": "🤢",
@@ -28,12 +26,14 @@ class JournalViewController: UIViewController, UITableViewDataSource, UITableVie
                     "joy": "😃",
                     "sadness": "😔",
                     "surprise": "😮"]
-    var dateArray =  [String]()
-    var emojiArray = [String]()
-    var emotionsArray = [String]()
+
+    var dateArray =  [""]
+    var emojiArray = [""]
+    var emotionsArray = [""]
     
     var lineChart: LineChartView!
     
+
 
     private var animatedGradientView : AnimatedGradientView?
     let cellSpacingHeight: CGFloat = 0.000001
@@ -49,11 +49,8 @@ class JournalViewController: UIViewController, UITableViewDataSource, UITableVie
         
         ref?.child("/user-entries/\(uid ?? "NOUSERID")/").observeSingleEvent(of: .value, with: { (snapshot) in
             
-            // Get user value
-            let entries = snapshot.value as? NSDictionary
-            for (_, entry) in entries! {
-                
-                let lol = (entry as! NSDictionary)
+            for rest in snapshot.children.allObjects as! [DataSnapshot] {
+                let lol = (rest.value as! NSDictionary)
                 self.dateArray.append( lol.value(forKey: "time") as! String)
                 self.emotionsArray.append(lol.value(forKey: "emotion") as! String)
                 self.emojiArray.append(lol.value(forKey: "emoji") as! String)
@@ -83,13 +80,6 @@ class JournalViewController: UIViewController, UITableViewDataSource, UITableVie
             self.view.addGestureRecognizer(swipeLeft)
             
         })
-        
-        
-        
-       
-        
-        
-        
     }
     
     @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
@@ -151,6 +141,8 @@ class JournalViewController: UIViewController, UITableViewDataSource, UITableVie
                 return p
             }()
             LineChartUpdate()
+            cell.layer.cornerRadius = 8
+            cell.backgroundColor = UIColor(white: 1, alpha: 0.5)
             cell.contentView.addSubview(lineChart)
             cell.clipsToBounds = true
             return cell
@@ -182,7 +174,10 @@ class JournalViewController: UIViewController, UITableViewDataSource, UITableVie
         data.addDataSet(line1)
         print(lineChart)
         lineChart.data = data
-        lineChart.chartDescription?.text = "My awesome chart"
+       
+        lineChart.backgroundColor = UIColor.clear
+        lineChart.gridBackgroundColor = UIColor.clear
+        lineChart.drawGridBackgroundEnabled = true
         
         lineChart.notifyDataSetChanged()
     }
