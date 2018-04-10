@@ -26,11 +26,19 @@ class JournalViewController: UIViewController, UITableViewDataSource, UITableVie
                     "joy": "😃",
                     "sadness": "😔",
                     "surprise": "😮"]
+    var emojiScoreMap = ["sadness": 1.0,
+                         "anger": 2.0,
+                         "contempt": 3.0,
+                         "disgust": 4.0,
+                         "fear": 5.0,
+                         "surprise": 6.0,
+                         "joy": 7.0]
+    
 
     var dateArray =  [""]
     var emojiArray = [""]
     var emotionsArray = [""]
-    
+    var lineChartEntry = [ChartDataEntry]()
     var lineChart: LineChartView!
     
 
@@ -48,12 +56,17 @@ class JournalViewController: UIViewController, UITableViewDataSource, UITableVie
         let uid = user?.uid
         
         ref?.child("/user-entries/\(uid ?? "NOUSERID")/").observeSingleEvent(of: .value, with: { (snapshot) in
-            
+            var i = 0
             for rest in snapshot.children.allObjects as! [DataSnapshot] {
                 let lol = (rest.value as! NSDictionary)
-                self.dateArray.append( lol.value(forKey: "time") as! String)
-                self.emotionsArray.append(lol.value(forKey: "emotion") as! String)
+                let date = lol.value(forKey: "time") as! String
+                let emotion = lol.value(forKey: "emotion") as! String
+                self.dateArray.append( date)
+                self.emotionsArray.append(emotion)
                 self.emojiArray.append(lol.value(forKey: "emoji") as! String)
+                self.lineChartEntry.append(ChartDataEntry(x: Double(i), y:self.emojiScoreMap[emotion]!))
+                i = i+1
+                
             }
         
             print(self.dateArray)
@@ -163,10 +176,8 @@ class JournalViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     func LineChartUpdate () {
-        var lineChartEntry = [ChartDataEntry]()
-        lineChartEntry.append(ChartDataEntry(x:1.0, y:3.0))
-        lineChartEntry.append(ChartDataEntry(x:2.0, y:6.0))
-        lineChartEntry.append(ChartDataEntry(x:3.0, y:7.0))
+       
+        
 
         let line1 = LineChartDataSet(values:lineChartEntry, label:"Mood")
         let data = LineChartData()
